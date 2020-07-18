@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/index_style.css">
+  <link rel="stylesheet" href="KU_B/font.css">
+  <link rel="stylesheet" href="KU_L/font.css">
+  <link rel="stylesheet" href="KU_M/font.css">
+  <link rel="stylesheet" href="css/login_style.css">
+</head>
+
+<body>
+  <header>
+    <div id="grid">
+      <div><img id="home_button" href="index.html" src="img/CollogeSymbol.jpg" ></div>
+      <div class="titletext"><h1><a href="index.html">KUMATCH</a></div></h1>
+      <div id="login_choice">
+          <a href="login_ver1.html" onclick="">로그인</a>
+          <span id=login_or>또는</span>
+          <a href="sign_up.html" onclick="">회원가입</a>
+      </div>
+      <div><img id="menu_button" src="img/list_icon.png" href="#"></div>
+    </div>
+  </header>
+
+  <nav id="grid_2">
+    <img id="aside_img" src="img/football.jpg">
+    <div class="login_box">
+      <div class="login_phr">
+        <span style="font-weight:light;color:#555559;">축구&풋살하고 싶을 땐!</span><br>
+        <span style="font-family:KorUB;font-weight:bold;color:#8B2331;">KUMATCH</span>
+      </div>
+      <div class="login_inbox">
+        <form action="#" method="post">
+          <div class="input_email">
+            <label style="font-size:15px;">ID 또는 이메일</label><br>
+            <input type="text" id="username" name="username" value=""><br><br><br>
+          </div>
+          <div class="input_pw">
+            <label style="font-size:15px;">비밀번호</label><br>
+            <input type="text" id="password"name="password" value=""><br><br><br><br>
+          </div>
+          <input type="submit" name="login_button" id="login_button" value="로그인"><br><br><br>
+      </form>
+      </div>
+      <div class="pw_forgot">
+        <form action="#" method="method">
+        <ul>
+          <li>비밀번호가 기억나지 않으신가요? <input type="submit" name="find_pw" id="find_pw" value="비밀번호찾기"></li><br>
+          <li>아직 회원이 아니신가요? <a href="sign_up.html"><input type="button" name="sign_up" id="sign_up" value="회원가입"></a></li>
+        </ul>
+      </form>
+      </div>
+    </div>
+  <nav>
+
+
+<!--
+  <div class="login_box">
+    <!--login 화면
+    {% if user.is_authenticated %}
+    로그인 성공!
+    {{ user.username }}님 환영합니다.
+
+    <a href="{% url 'user:logout' %}">로그아웃</a>
+    {% else %}-->
+<!--  <div class="exp1">
+      <h2>축구하고 싶을 땐</h2>
+      <h2 class=login_title_text>KUMATCH</h2>
+    </div>
+    <div class="login_inbox">
+      <div class="login_idpw">
+        <label>ID 또는 이메일</label><br>
+        <form action="" method="POST">
+          <!--{% csrf_token %}-->
+  <!--        <input type="text" name="username" value="" size = "30px"><br><br>
+          PW : <br>
+          <input type="password" name="password" value="" size = "30px">
+      </div>
+        <input id="login_but" type="submit" name="login_button" value="로그인">
+        </form>
+      <!--{% endif %}-->
+  <!--   </div>
+
+     <div class="pw_forget" >
+      <span style="text-align=center;"><a href="#">비밀번호가 생각나지 않으세요?</a><br></span>
+      <span style="text-align=center;"><a href="sign_up.html">아이디가 없다면 여기에서 가입하세요</a></span>
+     </div>
+  </div>-->
+
+</body>
+
+</html>
