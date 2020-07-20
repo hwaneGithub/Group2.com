@@ -1,0 +1,130 @@
+#grid_login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#aside_img_login {
+  width: 58%;
+  margin-top: 100px;
+  margin-left: 145px;
+}
+
+.login_box {
+  margin-top: 70px;
+  font-family: KorUL;
+  border-left: 2px solid #C7B9AB;
+}
+
+.login_phr {
+  font-size: 35px;
+  margin-top: 20px;
+  padding-bottom: 100px;
+  padding-left: 100px;
+  /* border: 1px solid black;*/
+}
+
+.login_inbox {
+  padding-bottom: 50px;
+  padding-left: 230px;
+  /*border: 1px solid black;*/
+}
+
+#login_button {
+  font-family: KorUM;
+  font-size: 20px;
+  color: #8B2331;
+  background-color: skyblue;
+  width: 300px;
+  height: 43px;
+  border-radius: 8px;
+  border-width: 0px;
+  margin-left: 4px;
+}
+
+.pw_forgot {
+  font-size: 20px;
+  color: color: #555559;
+  padding-left: 200px;
+  padding-bottom: 10px;
+  /* border: 1px solid black;*/
+}
+
+#username {
+  width : 300px;
+  height : 40px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+
+#password {
+  width : 300px;
+  height : 40px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+/*
+.login_box {
+  align: center;
+  position: absolute;
+  padding: 35px;
+  border-color: yellow;
+  border-style: solid;
+  top: 140px;
+  left: 280px;
+}
+
+.login_inbox{
+  position: absolute;
+  height: 300px;
+  width: 70%;
+  border-color: yellow;
+  border-style: none;
+  top: 80px;
+  left: 120px;
+
+}
+
+.login_idpw{
+  position: absolute;
+  height: 120px;
+  width: 60%;
+  border-color: yellow;
+  border-style: none;
+  top: 80px;
+  left: 100px;
+
+}
+
+#login_but{
+  position: absolute;
+  width : 150px;
+  color : blue;
+  height : 30px;
+  top : 230px;
+  left : 120px;
+}
+
+.pw_forget{
+  position: absolute;
+  top : 550px;
+  left : 470px
+}
+
+h2{
+  padding : 20px;
+  font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.login_title_text{
+  position : absolute;
+  top : 40px;
+  color : #E60E0E;
+  font-size: 30px;
+
+}
+.a{
+  text-decoration: none;
+}
+*/
