@@ -126,4 +126,6 @@ STATICFILES_DIRS = [
 
 STATIC_URL = '/static/'
 
+LOGIN_URL = '/login/'
+
 AUTH_USER_MODEL = 'users.User'
