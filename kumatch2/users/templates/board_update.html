@@ -90,9 +90,19 @@
       </div>
     </div>
 
-  <div id="board_name1">
+
    <h2 style="  font-family: KorUL; color :#8B2331;">팀 소개 게시판</h2><br>
    <div id=line1> </div>
+    {% if messages %}                            <!-- message 프레임워크 -->
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+  {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+      <form action="/board/{{ board.pk }}/update/" method="post" class="form-horizontal">
+    {% csrf_token %}                                     <!-- csrftoken 태그 -->
+    <input type="hidden" name="action" value="update">   <!-- action -->
       <table class="table table-striped table-bordered" border="1" width="800" align="center" cellspacing="0" >
         <tr>
 		<th>번호</th>
@@ -100,24 +110,24 @@
 	</tr>
 	<tr>
 		<th>제목</th>
-		<td>{{ board.b_title }}</td>
+		<td><input type="text" class="form-control" name="b_title" value="{{ board.b_title }}"></td>
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td>{{ board.b_note | linebreaksbr }}</td>
+		<td><textarea rows="10" class="form-control" name="b_note">{{ board.b_note }}</textarea></td>
 	</tr>
     <tr>
 		<th>작성자</th>
-		<td>{{ board.b_writer }}</td>
+		<td><input type="text" class="form-control" name="b_writer" value="{{ board.b_writer }}"></td>
 	</tr>
     <tr>
 		<th>작성일</th>
 		<td>{{ board.b_date | date:"Y-m-d H:i" }}</td>
 	</tr>
       </table>
-    <a href="/board/{{ board.pk }}/update/">
-        <button class="btn btn-primary" type="button">게시글 수정</button></a>
-  </div>
+        <button class="btn btn-primary" type="submit">게시글 저장</button>
+      </form>
+
 
   <div class= "container">
     <p class = "title">page1</p>

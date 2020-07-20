@@ -1,11 +1,10 @@
-from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import redirect
-from .models import User, Board
 from django.http import Http404
+from django.shortcuts import redirect
+from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
+from .models import User, Board
 
 
 # Create your views here.
@@ -92,9 +91,10 @@ class BoardDetailView(TemplateView):
 
 
 class BoardCreateUpdateView(TemplateView):  # 게시글 추가, 수정
-    template_name = 'base.html'
+    template_name = 'board_update.html'
     queryset = Board.objects.all()
     pk_url_kwargs = 'board_id'
+    success_message = '게시글이 저장되었습니다.'
 
     def get_object(self, queryset=None):
         queryset = queryset or self.queryset
@@ -107,11 +107,9 @@ class BoardCreateUpdateView(TemplateView):  # 게시글 추가, 수정
 
     def get(self, request, *args, **kwargs):  # 화면 요청
         board = self.get_object()
-        if not board:
-            raise Http404('invalid board_id')
+
         ctx = {
-            'view': self.__class__.__name__,
-            'data': board
+            'board': board
         }
         return self.render_to_response(ctx)
 
@@ -120,23 +118,22 @@ class BoardCreateUpdateView(TemplateView):  # 게시글 추가, 수정
         post_data = {key: request.POST.get(key) for key in ('b_title', 'b_note', 'b_writer')}
         for key in post_data:  # 세가지 데이터 모두 있어야 통과
             if not post_data[key]:
-                raise Http404('no data for {}'.format(key))
+                messages.error(self.request, '{} 값이 존재하지 않습니다.'.format(key), extra_tags='danger') # error 레벨로 메시지 저장
 
-        if action == 'create':  # board가 create일 경우
-            board = Board.objects.create(b_title=b_title, b_note=b_note, b_writer=b_writer)
-        elif action == 'update':  # board가 update일 경우
-            board = self.get_object()
-            if not board:
-                raise Http404('invalid article_id')
-
-            for key, value in post_data.items():
-                setattr(board, key, value)
-            board.save()
-        else:  # board가 없거나 create, update 중 하나가 아닐 경우
-            raise Http404('invalid action')
+        if len(messages.get_messages(request)) == 0:  # 메시지가 있다면 아무것도 처리하지 않음
+            if action == 'create':
+                board = Board.objects.create(**post_data)
+                messages.success(self.request, self.success_message)  # success 레벨로 메시지 저장
+            elif action == 'update':
+                board = self.get_object()
+                for key, value in post_data.items():
+                    setattr(board, key, value)
+                board.save()
+                messages.success(self.request, self.success_message)  # success 레벨로 메시지 저장
+            else:
+                messages.error(self.request, '알 수 없는 요청입니다.', extra_tags='danger')  # error 레벨로 메시지 저장
 
         ctx = {
-            'view': self.__class__.__name__,
-            'data': board
+            'board': self.get_object() if action == 'update' else None
         }
-        return self.render_to_response(ctx)  # 액션 작업 후 화면을 보냄
+        return self.render_to_response(ctx)
