@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <title>KUMATCH</title>
+  <link href="{% static 'css/mainstyle.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  <header>
+
+    <div class="titletext">KUMATCH</div>
+    <div id="login_button">
+      <a href="#"><img id=menu_img src="{% static 'img/pngwing.com.png' %}" alt=""></a>
+{% if user.is_authenticated %}
+    로그인 성공!
+    {{ user.username }}님 환영합니다.
+    <a href="{% url 'user:logout' %}">로그아웃</a>
+{% else %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input name="username" type="text">
+    <input name="password" type="password">
+    <input type="submit" value="로그인">
+</form>
+<a href="{% url 'user:signup' %}">회원가입</a>
+
+{% endif %}
+    </div>
+
+  </header>
+
+  <nav>
+    <div class="top">
+      <ul class="menu">
+        <li><a href="#">
+            <h3>매치</h3>
+          </a></li>
+        <li><a href="#">
+            <h3>선수모집</h3>
+          </a></li>
+        <li><a href="#">
+            <h3>팀현황</h3>
+          </a></li>
+        <li><a href="#">
+            <h3>메뉴 1</h3>
+          </a></li>
+        <li><a href="#">
+            <h3>메뉴 2</h3>
+          </a></li>
+        <li><a href="#">
+            <h3>메뉴 3</h3>
+          </a></li>
+      </ul>
+    </div>
+    <div id="match_image1"><img id=mainimage src="{% static 'img/main_1.png' %}" alt=""> </div>
+  </nav>
+  <hr>
+
+  <main>
+
+    <div id="calender"> calender 위치 <br>글씨체 수정</div>
+    <div id="match_list">match list</div>
+
+  </main>
+</body>
+
+</html>

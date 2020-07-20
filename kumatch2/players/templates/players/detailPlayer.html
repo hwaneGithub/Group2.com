@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meat http-equiv="content-Type" content="text/html"; charset=UTF-8>
+		<title>선수 세부정보</title>
+	</head>
+	<body>
+		<p>Detail Player</p>
+
+		{% if player_info %}
+			아이디 : {{player_info.p_pid}}</br>
+			닉네임 : {{player_info.p_nick}}</br>
+			이메일 : {{player_info.p_email}}</br>
+			이름 : {{player_info.p_name}}</br>
+			생년월일 : {{player_info.p_birth}}</br>
+			포지션 : {{player_info.p_position}}</br>
+			소속팀 : {{player_info.p_team}}</br>
+		{% else %}
+			<p>player: 0</p>
+		{% endif %}
+		</br>
+
+		<a href="{% url 'players:playerMod' player_info.p_name %}">수정</a>
+		<a href="{% url 'players:playerDel' player_info.p_name %}">삭제</a>
+		<a href="{% url 'players:playerAll' %}">선수 목록</a>
+		<a href="{% url 'players:reg' %}">선수 등록</a>
+		</form>
+	</body>
+</html>

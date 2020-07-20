@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meat http-equiv="content-Type" content="text/html"; charset=UTF-8>
+		<title>팀 정보 수정</title>
+	</head>
+	<body>
+		<p>Modify Team</p>
+<!--path('modCon/', views.modConTeam, name='modCon'),-->
+
+		{% if team_info %}
+			<form action="{% url 'teams:modCon' %}" method="post">
+				{% csrf_token %}
+				팀 이름 : <input type="text" name="name" value={{team_info.t_name}}></br>
+				학과/동아리 : <input type="text" name="major" value={{team_info.t_major}}></br>
+				대표자 : <input type="text" name="captain" value={{team_info.t_captain}}></br>
+				인원 수 : <input type="number" name="memCount" value={{team_info.t_memCount}}></br>
+				<input type="submit" name="Modify" value="수정"></br>
+			</form>
+
+		{% else %}
+			<p>team: 0</p>
+		{% endif %}		
+		
+	</body>
+</html>

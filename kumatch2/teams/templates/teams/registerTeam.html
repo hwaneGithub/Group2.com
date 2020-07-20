@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meat http-equiv="content-Type" content="text/html"; charset=UTF-8>
+		<title>신규 팀 등록</title>
+	</head>
+	<body>
+		<p>Register Team</p>
+		<form action="{% url 'teams:regCon' %}" method="post">
+		{% csrf_token %}
+				팀 이름 : <input type="text" name="name"></br>
+				학과/동아리 : <input type="text" name="major"></br>
+				대표자 : <input type="text" name="captain"></br>
+				인원 수 : <input type="number" name="memCount"></br>
+				<input type="submit" name="Register" value="등록"></br>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meat http-equiv="content-Type" content="text/html"; charset=UTF-8>
+		<title>팀 세부정보</title>
+	</head>
+	<body>
+		<p>Detail Team</p>
+
+		{% if team_info %}
+			팀 이름 : {{team_info.t_name}}</br>
+			학과/동아리 : {{team_info.t_major}}</br>
+			대표자 : {{team_info.t_captain}}</br>
+			인원 수 : {{team_info.t_memCount}}</br>
+		{% else %}
+			<p>team: 0</p>
+		{% endif %}
+		</br>
+
+		<a href="{% url 'teams:teamMod' team_info.t_name %}">수정</a>
+		<a href="{% url 'teams:teamDel' team_info.t_name %}">삭제</a>
+		<a href="{% url 'teams:teamAll' %}">팀 목록</a>
+		<a href="{% url 'teams:reg' %}">신규 팀 등록</a>
+		</form>
+	</body>
+</html>

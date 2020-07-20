@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meat http-equiv="content-Type" content="text/html"; charset=UTF-8>
+		<title>등록된 팀 목록</title>
+	</head>
+	<body>
+		<p>Read Team</p>
+
+		{% if team_list %}
+		<ol>
+			{% for t in team_list %}
+			<li>
+				<a href="{% url 'teams:teamDet' t.t_name %}">{{t.t_name}}</a>
+				<a href="{% url 'teams:teamMod' t.t_name %}">수정</a>
+				<a href="{% url 'teams:teamDel' t.t_name %}">삭제</a>
+			</li>
+			{% endfor %}
+		</ol>
+		{% else %}
+			<p>Team: 0</p>
+		{% endif %}
+		</br>
+
+		<a href="{% url 'teams:reg' %}">신규 팀 등록</a>
+		</form>
+	</body>
+</html>
