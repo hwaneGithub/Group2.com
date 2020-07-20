@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <title>KUMATCH</title>
+  <link rel="stylesheet" href="css/index_style.css">
+  <link rel="stylesheet" href="css/menu_style.css">
+  <link rel="stylesheet" href="css/image_slide_index_style.css"/>
+  <link rel="stylesheet" href="css/slider_1.css">
+  <link rel="stylesheet" href="KU_B/font.css">
+  <link rel="stylesheet" href="KU_L/font.css">
+  <link rel="stylesheet" href="KU_M/font.css">
+</head>
+
+<body>
+  <header>
+    <div id="grid">
+      <div><img id="home_button" href="" src="img/CollogeSymbol.jpg" ></div>
+      <div class="titletext"><h1><a href="index.html">KUMATCH</a></div></h1>
+      <div id="login_choice">
+          <a href="login_ver1.html" onclick="">로그인</a>
+          <span id=login_or>또는</span>
+          <a href="sign_up.html" onclick="">회원가입</a>
+      </div>
+      <div><img id="menu_button" src="img/list_icon.png"></div>
+    </div>
+  </header>
+
+  <nav>
+      <a href="#" class="is-current">매치현황</a>
+      <a href="#">랭킹</a>
+      <a href="#">알림터</a>
+      <a href="board_main.html">커뮤니티</a>
+      <a href="#">미정1</a>
+    <div class="nav-underline"></div>
+  </nav>
+
+  <main>
+    <!--<img id=main_img src="img/practice.jpg">-->
+    <div id="slide">    <!--사진 슬라이드 시작 -->
+      <input type="radio" name="pos" id="pos1" checked>
+      <input type="radio" name="pos" id="pos2">
+      <input type="radio" name="pos" id="pos3">
+      <input type="radio" name="pos" id="pos4">
+      <ul>
+        <li><image id="image1" src="img\ball.jpg"></li>
+        <li><image id="image2" src="img\wg.jpg"></li>
+        <li><image id="image3" src="img\practice.jpg"></li>
+        <li><image id="image4" src="img\game.jpg"></li>
+      </ul>
+      <p class="pos">
+        <label for="pos1"></label>
+        <label for="pos2"></label>
+        <label for="pos3"></label>
+        <label for="pos4"></label>
+      </p>
+    </div>
+<br><br>
+
+    <div id="calender">
+      <section class="wrapper">
+          <div class="slides">
+            <article class="slide" data-index="1">
+                <h2 style="position : relative; left : 49%;">07/16&nbsp;&nbsp;목요일</h2>
+                <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+
+            </article>
+            <article class="slide" data-index="2">
+                <h2 style="position : relative; left : 49%;">07/17&nbsp;&nbsp;금요일</h2>
+                <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+            </article>
+            <article class="slide" data-index="3">
+                <h2 style="position : relative; left : 49%; color : red;">07/18&nbsp;&nbsp;토요일</h2>
+                <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+            </article>
+            <article class="slide" data-index="4">
+                <h2 style="position : relative; left : 49%; color : red;">07/19&nbsp;&nbsp;일요일</h2>
+                <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+            </article>
+            <article class="slide" data-index="5">
+                <h2 style="position : relative; left : 49%;">07/20&nbsp;&nbsp;월요일</h2>
+                <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+            </article>
+            <article class="slide" data-index="6">
+                <h2 style="position : relative; left : 49%;">07/21&nbsp;&nbsp;화요일</h2>
+                <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+            </article>
+          </div>
+          <button id="prev-btn">prev</button>
+          <button id="next-btn">next</button>
+      </section>
+      <script src="js/slide_1.js"></script></div>
+    <div id="match_list">match list</div>
+
+  </main>
+</body>
+
+</html>
