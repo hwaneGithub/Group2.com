@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib import messages
 from .models import User, Board
+from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -57,7 +59,8 @@ def signup_view(request):
     return render(request, "sign_up.html")
 
 
-class BoardListView(TemplateView):  # 게시글 목록
+class BoardListView(LoginRequiredMixin, TemplateView):  # 게시글 목록
+    login_url = '/login'
     template_name = 'board_main.html'
     queryset = Board.objects.all()  # 모든 게시글
 
@@ -118,7 +121,7 @@ class BoardCreateUpdateView(TemplateView):  # 게시글 추가, 수정
         post_data = {key: request.POST.get(key) for key in ('b_title', 'b_note', 'b_writer')}
         for key in post_data:  # 세가지 데이터 모두 있어야 통과
             if not post_data[key]:
-                messages.error(self.request, '{} 값이 존재하지 않습니다.'.format(key), extra_tags='danger') # error 레벨로 메시지 저장
+                messages.error(self.request, '{} 값이 존재하지 않습니다.'.format(key), extra_tags='danger')  # error 레벨로 메시지 저장
 
         if len(messages.get_messages(request)) == 0:  # 메시지가 있다면 아무것도 처리하지 않음
             if action == 'create':
@@ -132,6 +135,8 @@ class BoardCreateUpdateView(TemplateView):  # 게시글 추가, 수정
                 messages.success(self.request, self.success_message)  # success 레벨로 메시지 저장
             else:
                 messages.error(self.request, '알 수 없는 요청입니다.', extra_tags='danger')  # error 레벨로 메시지 저장
+
+            return HttpResponseRedirect('/board/')  # 정상적인 저장이 완료되면 '/board/'로 이동됨
 
         ctx = {
             'board': self.get_object() if action == 'update' else None
