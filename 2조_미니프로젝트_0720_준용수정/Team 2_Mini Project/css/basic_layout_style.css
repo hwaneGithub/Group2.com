@@ -1,0 +1,203 @@
+.a {
+  text-decoration: none;
+}
+
+#grid_index {
+  border-bottom: 2px solid #8B2331;
+  display: grid;
+  grid-template-columns: 400px 700px 210px 80px;
+}
+
+#home_button {
+  width: 20%;
+  padding-top: 30px;
+  padding-left: 35px;
+}
+
+.titletext {
+  text-align: center;
+  text-decoration: none;
+  color: #8B2331;
+  font-family: KorUB;
+  font-size:35px;
+  font-weight: bold;
+  padding-left:185px;
+  padding-right: 250px;
+}
+
+#login_choice {
+  font-family: KorUL;
+  font-size: 23px;
+  color: #8B2331;
+  font-weight: bold;
+  padding-top: 90px;
+}
+
+#login_or {
+  font-size: 18px;
+  font-weight: light;
+  color: #333;
+}
+
+#menu_button {
+  width: 60%;
+  padding-top: 80px;
+  padding-left: 80px;
+}
+
+
+#main_img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 55%;
+}
+nav {
+  position: relative;
+  display: flex;
+  margin: 1em auto;
+  font-family: KorUL;
+  font-size: 18px;
+}
+nav a {
+  margin: auto;
+  display: block;
+  width: 20%;
+  padding: .75em 0;
+  color: #333;
+  text-decoration: none;
+  text-align: center;
+}
+.nav-underline {
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 11.5%;
+  height: 2px;
+  background: #706258;
+  transition: all .3s ease-in-out;
+}
+nav a:nth-child(1).is-current ~ .nav-underline {
+  left: 11%;
+}
+nav a:nth-child(2).is-current ~ .nav-underline {
+  left: 44.2%;
+}
+nav a:nth-child(3).is-current ~ .nav-underline {
+  left: 77.4%;
+}
+nav a:nth-child(1):hover ~ .nav-underline {
+  left: 11%;
+}
+nav a:nth-child(2):hover ~ .nav-underline {
+  left: 44.2%;
+}
+nav a:nth-child(3):hover ~ .nav-underline {
+  left: 77.4%;
+}
+
+body {
+    font-family:KorUL;
+    font-size:22
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+/* 본래 메뉴 글씨 칼라 */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+/* 커서 메뉴 글씨 칼라 */
+.sidenav a:hover {
+    color: #C7B9AB;
+}
+
+/* 메뉴 바 X 표시 */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#menu_img {
+  position: absolute;
+  width: 50px;
+  right: 50px;
+}
+
+#football_img, #settings_img, #team_img {
+  width: 15%;
+}
+
+#logo {
+  popsition: absolute;
+  margin-top : 250px;
+
+}
+
+#sns {
+  display : grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 30px;
+  border-top: 1px solid #C7B9AB;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+#instagram_img, #facebook_img {
+  width: 70%;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper_1 {
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 120px;
+}
+
+footer {
+  width:100%;
+  height: 120px;
+  position: relative;
+  transform: translateY(-100%);
+  bottom: 0;
+  background-color:#434343;
+  color: #cecece;
+  text-align: center;
+  color: white;
+}
+
+#match_list{
+  border-style :ridge;
+  left : 250px;
+  position:relative;
+  top : -300px;
+}

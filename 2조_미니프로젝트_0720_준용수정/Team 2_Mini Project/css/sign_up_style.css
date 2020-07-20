@@ -1,0 +1,120 @@
+#grid_sign_up {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#aside_img_sign_up {
+  width: 58%;
+  margin-top: 100px;
+  margin-left: 145px;
+}
+
+.sign_up_box {
+  margin-top: 70px;
+  font-family: KorUL;
+  border-left: 2px solid #C7B9AB;
+  border: 1px solid black;
+}
+
+.sign_up_phr {
+  font-size: 35px;
+  padding-bottom: 50px;
+  padding-left: 100px;
+  border: 1px solid black;
+}
+
+.sign_up_inbox {
+  padding-bottom: 50px;
+  padding-left: 130  px;
+  border: 1px solid black;
+  border: 1px solid black;
+}
+
+#emailbox {
+  width : 500px;
+  height : 40px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+
+#password {
+  width : 240px;
+  height : 40px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+
+#con_pw {
+  width : 240px;
+  height : 40px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+
+#info {
+  font-family: KorUM;
+  color: darkgreen;
+}
+
+#sign_name {
+  width : 240px;
+  height : 40px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+
+#choice_gender {
+  width : 245px;
+  height : 43px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+
+#sign_mobile {
+  width : 500px;
+  height : 40px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+
+#birth_year {
+  width : 165px;
+  height : 43px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+
+#birth_month {
+  width : 165px;
+  height : 43px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+
+#birth_date {
+  width : 165px;
+  height : 43px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+
+#sign_up_button {
+  font-family: KorUM;
+  font-size: 20px;
+  color: #8B2331;
+  background-color: skyblue;
+  width: 300px;
+  height: 43px;
+  border-radius: 8px;
+  border-width: 0px;
+  margin-left: 4px;
+}
