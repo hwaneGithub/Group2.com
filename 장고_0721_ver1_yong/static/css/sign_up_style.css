@@ -5,7 +5,7 @@
 
 #aside_img_sign_up {
   width: 58%;
-  margin-top: 100px;
+  margin-top: 150px;
   margin-left: 145px;
 }
 
@@ -13,14 +13,14 @@
   margin-top: 70px;
   font-family: KorUL;
   border-left: 2px solid #C7B9AB;
-  border: 1px solid black;
+  margin-bottom: 45px;
 }
 
 .sign_up_phr {
   font-size: 35px;
-  padding-bottom: 50px;
+  padding-top:35px;
+  padding-bottom: 20px;
   padding-left: 100px;
-  border: 1px solid black;
 }
 
 .sign_up_inbox {
@@ -29,9 +29,18 @@
   border: 1px solid black;
   border: 1px solid black;
 }
+table {
+  font-family: KorUL;
+  font-size: 15px;
+  border-bottom: 1px solid #C7B9AB;
+}
 
-#emailbox {
-  width : 500px;
+td {
+  padding-top: 20px;
+}
+
+#username {
+  width : 490px;
   height : 40px;
   border-width: 1px;
   border-radius: 8px;
@@ -53,13 +62,14 @@
   border-radius: 8px;
   border-color: #555559;
 }
-
-#info {
-  font-family: KorUM;
-  color: darkgreen;
+#last_name, #first_name {
+  width : 240px;
+  height : 40px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
 }
-
-#sign_name {
+#mobile_num {
   width : 240px;
   height : 40px;
   border-width: 1px;
@@ -67,54 +77,87 @@
   border-color: #555559;
 }
 
-#choice_gender {
+#gender {
   width : 245px;
-  height : 43px;
+  height : 45px;
   border-width: 1px;
   border-radius: 8px;
   border-color: #555559;
+  font-family: KorUB;
+  font-size: 15px;
+  color: #8B2331;
 }
 
-#sign_mobile {
-  width : 500px;
-  height : 40px;
+#birth_year, #birth_month, #birth_date {
+  width: 162px;
+  height : 45px;
   border-width: 1px;
   border-radius: 8px;
   border-color: #555559;
+  font-family: KorUB;
+  font-size: 15px;
+  color: #8B2331;
 }
 
-#birth_year {
-  width : 165px;
-  height : 43px;
+.choice_position {
+  border: 1px solid black;
+  height: 45px;
+  border-radius: 8px;
+  vertical-align: middle;
+}
+#position {
+  width: 80px;
+  font-family: KorUL;
+  font-size: 50px;
+  vertical-align: middle;
+}
+
+/*
+#upload_id {
+  border: 1px solid #555559;
+  border-radius: 8px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+#id_card {
+  width: 200px;
+  height: 35px;
+} */
+
+#id_num {
+  width: 490px;
+  height: 40px;
   border-width: 1px;
   border-radius: 8px;
   border-color: #555559;
+
 }
 
-#birth_month {
-  width : 165px;
-  height : 43px;
-  border-width: 1px;
-  border-radius: 8px;
-  border-color: #555559;
+#agree_term {
+  font-size: 15px;
+  align: center;
 }
 
-#birth_date {
-  width : 165px;
-  height : 43px;
-  border-width: 1px;
-  border-radius: 8px;
-  border-color: #555559;
-}
-
-#sign_up_button {
+#join {
   font-family: KorUM;
   font-size: 20px;
   color: #8B2331;
-  background-color: skyblue;
-  width: 300px;
+  background-color: #C7B9AB;
+  width: 490px;
   height: 43px;
   border-radius: 8px;
   border-width: 0px;
-  margin-left: 4px;
+  margin-bottom: 20px;
+}
+
+#none {
+  text-decoration: underline;
+}
+
+#go_login {
+  text-decoration: underline;
+  padding-top: 50px;
+  margin-top: 50px;
+  margin-left: 210px;
 }
