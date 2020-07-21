@@ -22,8 +22,8 @@ urlpatterns = [
 	path('reg/', views.regTeam, name='reg'),
 	path('regCon/', views.regConTeam, name='regCon'),
 	path('all/', views.reaTeamAll, name='teamAll'),
-	path('<str:name>/det/', views.detTeam, name='teamDet'),
-	path('<str:name>/mod/', views.reaTeamOne, name='teamMod'),
+	path('<int:id>/det/', views.detTeam, name='teamDet'), # team_id는 앞에서 받은 t.id를 넣어주는 자리임(뭐라쓰던 중요x)
+	path('<int:id>/mod/', views.reaTeamOne, name='teamMod'),
 	path('modCon/', views.modConTeam, name='modCon'),
-	path('<str:name>/del/', views.delConTeam, name='teamDel'),
+	path('<int:id>/del/', views.delConTeam, name='teamDel'),
 ]

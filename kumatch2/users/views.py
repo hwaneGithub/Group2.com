@@ -61,6 +61,7 @@ def signup_view(request):
 
 class BoardListView(LoginRequiredMixin, TemplateView):  # 게시글 목록
     login_url = '/login'
+
     template_name = 'board_main.html'
     queryset = Board.objects.all()  # 모든 게시글
 
@@ -104,15 +105,18 @@ class BoardCreateUpdateView(TemplateView):  # 게시글 추가, 수정
         pk = self.kwargs.get(self.pk_url_kwargs)
         board = queryset.filter(pk=pk).first()
 
-        if pk and not board:  # 검색결과가 없으면 곧바로 에러 발생
-            raise Http404('invalid pk')
+        if pk:
+            if not board:
+                raise Http404('invalid pk')
+            elif board.b_id != self.request.user:  # 작성자가 수정하려는 사용자와 다른 경우
+                raise Http404('작성자만 수정할 수 있습니다.')
         return board
 
     def get(self, request, *args, **kwargs):  # 화면 요청
         board = self.get_object()
 
         ctx = {
-            'board': board
+            'board': board,
         }
         return self.render_to_response(ctx)
 
@@ -122,6 +126,7 @@ class BoardCreateUpdateView(TemplateView):  # 게시글 추가, 수정
         for key in post_data:  # 세가지 데이터 모두 있어야 통과
             if not post_data[key]:
                 messages.error(self.request, '{} 값이 존재하지 않습니다.'.format(key), extra_tags='danger')  # error 레벨로 메시지 저장
+        post_data['b_id'] = self.request.user
 
         if len(messages.get_messages(request)) == 0:  # 메시지가 있다면 아무것도 처리하지 않음
             if action == 'create':

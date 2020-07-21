@@ -96,26 +96,30 @@
       <table border="1" width="800" align="center" cellspacing="0" >
         <thead>
         <tr>
-          <th width="150" align="center" bgcolor="#FFF0F0"> 번 호 </th>
-          <th width="700" align="center" bgcolor="#FFF0F0"> 제 목 </th>
-          <th width="200" align="center" bgcolor="#FFF0F0"> 작성자 </th>
-          <th width="300" align="center" bgcolor="#FFF0F0"> 작성일 </th>
+          <th width="150" align="center" bgcolor="#FFF0F0"> 팀 명 </th>
+          <th width="400" align="center" bgcolor="#FFF0F0"> 학과 / 동아리 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 대표자 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 인원수 </th>
         </tr>
       </thead>
       <tbody align = "center">
-        {% for board in boards %}
-          <tr onclick="location.href='/board/{{ board.pk }}/'">  <!-- 테이블 행 click 시 url 이동 -->
-            <td>{{ board.pk }}</td>
-            <td>{{ board.b_title }}</td>
-            <td>{{ board.b_writer }}</td>
-            <td>{{ board.b_date | date:"Y-m-d H:i" }}</td>
+        {% if team_list %}
+        {% for t in team_list %}
+          <tr onclick="location.href='{% url 'teams:teamDet' t.id %}'">  <!-- 테이블 행 click 시 url 이동 -->
+            <td>{{ t.t_name }}</td>
+            <td>{{ t.t_major }}</td>
+            <td>{{ t.t_captain }}</td>
+            <td>{{ t.t_memCount }}</td>
           </tr>
-          {% endfor %}
+        {% endfor %}
+        {% else %}
+			<tr></tr><td>Team: 0</td>
+		{% endif %}
         </tbody>
 
     </table>
       <!-- 버튼 click 시 url 이동 -->
-    <a href="/board/create/" ><button class="btn btn-primary" type="button" >새 게시글 작성</button></a>
+    <a href="{% url 'teams:reg' %}" ><button class="btn btn-primary" type="button" >신규 팀 등록</button></a>
   </div>
 
   <div class= "container">
