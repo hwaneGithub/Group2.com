@@ -1,0 +1,44 @@
+nav {
+  position: relative;
+  display: flex;
+  width: 640px;
+  margin: 1em auto;
+  font-family: KorUL;
+  font-size: 18px;
+}
+nav a {
+  margin: auto;
+  display: block;
+  width: 20%;
+  padding: .75em 0;
+  color: #333;
+  text-decoration: none;
+  text-align: center;
+}
+.nav-underline {
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 25%;
+  height: 2px;
+  background: #706258;
+  transition: all .3s ease-in-out;
+}
+nav a:nth-child(1).is-current ~ .nav-underline {
+  left: 5%;
+}
+nav a:nth-child(2).is-current ~ .nav-underline {
+  left: 37.5%;
+}
+nav a:nth-child(3).is-current ~ .nav-underline {
+  left: 70%;
+}
+nav a:nth-child(1):hover ~ .nav-underline {
+  left: 5%;
+}
+nav a:nth-child(2):hover ~ .nav-underline {
+  left: 37.5%;
+}
+nav a:nth-child(3):hover ~ .nav-underline {
+  left: 70%;
+}
