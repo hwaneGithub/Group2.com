@@ -5,7 +5,7 @@ from teams.models import Team
 
 # Create your views here.
 def regTeam(request) :
-	return render(request, 'teams/registerTeam.html')
+	return render(request, 'board_create.html')
 
 def regConTeam(request) :
 	name = request.POST['name']
@@ -21,25 +21,26 @@ def regConTeam(request) :
 def reaTeamAll(request) :
 	qs = Team.objects.all()	#팀 정보 가져오기
 	context = {'team_list': qs}
-	return render(request, 'teams/readTeam.html', context)
+	return render(request, 'board_main.html', context)
 
-def detTeam(request, name) :
-	qs = Team.objects.get(t_name = name)
+def detTeam(request, id) :
+	qs = Team.objects.get(id = id)
 	context = {'team_info': qs}
-	return render(request, 'teams/detailTeam.html', context)
+	return render(request, 'board_detail.html', context)
 
-def reaTeamOne(request, name) :
-	qs = Team.objects.get(t_name = name)
+def reaTeamOne(request, id) :
+	qs = Team.objects.get(id = id)
 	context = {'team_info': qs}
-	return render(request, 'teams/modifyTeam.html', context)
+	return render(request, 'board_update.html', context)
 
 def modConTeam(request) :
 	name = request.POST['name']
 	major = request.POST['major']
 	captain = request.POST['captain']
 	memCount = request.POST['memCount']
+	id = request.POST['id']
 
-	t_qs = Team.objects.get(t_name = name)	#Query String
+	t_qs = Team.objects.get(id = id)	#Query String
 
 	t_qs.t_name = name
 	t_qs.t_major = major
@@ -51,8 +52,8 @@ def modConTeam(request) :
 	# templates로 이동
 	return HttpResponseRedirect(reverse('teams:teamAll'))
 
-def delConTeam(request, name) :
-	qs = Team.objects.get(t_name = name)
+def delConTeam(request, id) :
+	qs = Team.objects.get(id = id)
 	qs.delete()
 
 	return HttpResponseRedirect(reverse('teams:teamAll'))

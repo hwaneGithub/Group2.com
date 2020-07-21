@@ -93,17 +93,16 @@
 
    <h2 style="  font-family: KorUL; color :#8B2331;">팀 소개 게시판</h2><br>
    <div id=line1> </div>
-      <form action="{% url 'teams:modCon' %}" method="post" class="form-horizontal">
+      <form action="{% url 'teams:regCon' %}" method="post" class="form-horizontal">
     {% csrf_token %}                                     <!-- csrftoken 태그 -->
       <table class="table table-striped table-bordered" border="1" width="800" align="center" cellspacing="0" >
-		<input type="hidden" class="form-control" name="id" value={{team_info.id}}>
-    <tr>
+	<tr>
 		<th>팀 명</th>
-		<td><input type="text" class="form-control" name="name" value={{team_info.t_name}}></td>
+		<td><input type="text" class="form-control" name="name"></td>
 	</tr>
 	<tr>
 		<th>학과/동아리</th>
-		<td><input type="text" class="form-control" name="major" value={{team_info.t_major}}></td>
+		<td><input type="text" class="form-control" name="major"></td>
 	</tr>
     <tr>
 		<th>대표자</th>
@@ -111,10 +110,10 @@
 	</tr>
     <tr>
 		<th>인원수</th>
-		<td><input type="number" class="form-control" name="memCount" value={{team_info.t_memCount}}></td>
+		<td><input type="number" class="form-control" name="memCount"></td>
 	</tr>
       </table>
-        <button class="btn btn-primary" type="submit" name="Modify"> 저 장 </button>
+        <button class="btn btn-primary" type="submit" name="Register">등록</button>
       </form>
 
 
