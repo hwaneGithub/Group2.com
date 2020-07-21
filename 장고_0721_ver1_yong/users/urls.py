@@ -1,13 +1,14 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
-from users.views import BoardListView, BoardDetailView, BoardCreateUpdateView
 
 app_name = "user"
 
 urlpatterns = [
     path("", views.main, name="main"),
-    path("", include('teams.urls')),
     path("login", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),
     path("signup", views.signup_view, name="signup"),
+    path("notice",views.notice_view, name="notice"),
+    path("manage", views.manage_view, name="manage"),
+    path("intro", views.intro_view, name="intro"),
 ]

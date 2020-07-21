@@ -14,10 +14,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 def main(request):
     return render(request, 'basic_layout.html')
 
+def notice_view(request):
+    return render(request, 'notification_board.html')
 
-def board_main(request):
-    return render(request, 'board_main.html')
+def manage_view(request):
+    return render(request, 'team_manage.html')
 
+def intro_view(request):
+    return render(request, 'introduction_base.html')
 
 def login_view(request):
     if request.method == "POST":
