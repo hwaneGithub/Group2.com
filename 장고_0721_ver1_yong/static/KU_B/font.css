@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'KorUB';
+  src: url('KorUB.svg#KorUB') format('svg'),
+       url('KorUB.ttf') format('truetype'),
+       url('KorUB.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: '고려대학교B';
+  src: url('고려대학교B.eot');
+  src: url('고려대학교B.eot?#iefix') format('embedded-opentype'),
+       url('고려대학교B.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+

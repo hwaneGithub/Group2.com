@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meat http-equiv="content-Type" content="text/html"; charset=UTF-8>
+		<title>선수 등록</title>
+	</head>
+	<body>
+		<p>Register Player</p>
+		<form action="{% url 'players:regCon' %}" method="post">
+		{% csrf_token %}
+				아이디 : <input type="text" name="pid"></br>
+				닉네임 : <input type="text" name="nick"></br>
+				이메일 : <input type="text" name="email"></br>
+				이름 : <input type="text" name="name"></br>
+				생년월일 : <input type="text" name="birth"></br>
+				포지션 : <input type="text" name="position"></br>
+				소속팀 : <input type="text" name="team"></br>
+				<input type="submit" name="Register" value="등록"></br>
+		</form>
+	</body>
+</html>

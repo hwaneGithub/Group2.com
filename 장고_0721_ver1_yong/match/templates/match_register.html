@@ -1,0 +1,100 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>KUMATCH_notification</title>
+    <link rel="stylesheet" href="css/basic_layout_style.css">
+    <link rel="stylesheet" href="css/image_slide_index_style.css">
+    <link rel="stylesheet" href="css/login_style.css">
+    <link rel="stylesheet" href="KU_B/font.css">
+    <link rel="stylesheet" href="KU_L/font.css">
+    <link rel="stylesheet" href="KU_M/font.css">
+
+    <style media="screen">
+      #center_line{
+        border-left: 2px solid #C7B9AB;
+        margin-top: 70px;
+        margin-left : -50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper_1">
+      <header>
+        <div id="grid_index">
+          <a href="basic_layout.html"><img id="home_button" src="img/CollogeSymbol.jpg" href="#"></a>
+          <div class="titletext"><h1><a href="basic_layout.html" style="text-decoration: none;color: #8B2331;">KUMATCH</a></h1></div>
+          <div id="login_choice">
+              <a href="login_ver1.html" style="text-decoration: none;">로그인</a>
+              <span id=login_or>또는</span>
+              <a href="sign_up.html" style="text-decoration: none;">회원가입</a>
+          </div>
+          <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img id="menu_button" src="img/personal_settings.png"></span>
+        </div>
+      </header>
+
+      <nav>
+          <a href="notification_board.html">공지사항</a>
+          <a href="introduction_base.html" class="is-current">KUMATCH 소개</a>
+          <a href="board_main.html">커뮤니티</a>
+        <div class="nav-underline"></div>
+      </nav>
+
+      <aside>
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
+          <div id="match_condition"><a href="my_matchlist.html"><img id="football_img" src="img/football.png">  나의 경기 현황</a></div><br><br>
+          <div id="modify_my_info"><a href="#"><img id="settings_img" src="img/settings.png">  정보 수정</a></div><br><br>
+          <div id="manage_team"><a href="team_manage.html"><img id="team_img" src="img/team.png">  팀 관리</a></div><br><br>
+          <div id="sns"><a href="https://www.instagram.com/" target="_blank"><img id="instagram_img" src="img/instagram.png"></a>
+                        <a href="https://www.facebook.com/" target="_blank"><img id="facebook_img" src="img/facebook.png"></a></div>
+          <div id="logo" style="text-align:center; font-family:KorUB; font-size:40px; color:#8B2331;">KUMATCH</a>
+        </div>
+
+        <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        </script>
+       </div>
+      </aside>
+
+      <nav id="grid_login">
+        <img id="aside_img_login" src="img/match_register.jpg">
+        <div id="center_line">
+          <div id="notification_main">
+           <h2 style="  font-family: KorUL; color :#8B2331; margin-top : 50px; margin-left:50px; font-size : 40px;">매치 신청</h2><br>
+           <div id=line1> </div>
+              <table id="table1" border="1" width="700" align="center" cellspacing="0">
+                <thead>
+                <tr>
+                  <th width="200" align="center" bgcolor="#FFF0F0"> 매치일정 </th>
+                  <th width="450" align="center" bgcolor="#FFF0F0"> 장소 </th>
+                  <th width="100" align="center" bgcolor="#FFF0F0"> 팀이름 </th>
+                  <th width="100" align="center" bgcolor="#FFF0F0"> 비고 </th>
+                </tr>
+              </thead>
+              <tbody align = "center">
+                <!--{% for ddd in ddd %}-->
+                  <tr>
+                    <td>{{ match.date }}</td>
+                    <td>{{ match.place }}</td>
+                    <td>{{ match.teamname }}</td>
+                    <td>{{ match.note }}</td>
+                  </tr>
+                  <!--{% endfor %}-->
+                </tbody>
+
+            </table>
+          </div>
+        </div>
+    </nav>
+
+  </body>
+</html>
