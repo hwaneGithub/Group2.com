@@ -49,45 +49,74 @@
       </div>
     </header>
 
-  <nav id="grid_login">
-    <img id="aside_img_login" src="img/team_manage.jpg">
+
     <div class="login_box">
 
 
-      <div id="team_space"><input id="team_button" type="button" name="team_but1" font-family ="KorUB" value="팀 만들기"> </div>
-      <table width ="300">
+
+      <table width ="1000">
         <tr align ="center">
-          <td width="100" style="font-size:25px; font-family : KorHB; padding : 15px;">나의 팀</td>
-          <td width="200">{{ team.name }}</td>
+          <td width="1500" style="font-size:25px; font-family : KorHB; padding : 15px;">내가 등록한 경기</td>
+          <td><span><a href="#"><input type="button" id="match_register" name="match_register" value="매치 등록하기"></a></span></td>
         </tr>
       </table>
 
       <div id="underline1"></div>
 
-      <table border="1" width="650" align="center" cellspacing="0" >
+      <table border="1" width="850" align="center" cellspacing="0" >
         <thead>
         <tr>
-          <th width="50" align="center" bgcolor="#FFF0F0"> 번 호 </th>
-          <th width="800" align="center" bgcolor="#FFF0F0"> 학과 or 동아리 </th>
-          <th width="300" align="center" bgcolor="#FFF0F0"> 이름 </th>
-          <th width="50" align="center" bgcolor="#FFF0F0"> 성별 </th>
+          <th width="150" align="center" bgcolor="#FFF0F0"> 매치일정 </th>
+          <th width="800" align="center" bgcolor="#FFF0F0"> 장소 </th>
+          <th width="300" align="center" bgcolor="#FFF0F0"> 팀이름 </th>
+          <th width="150" align="center" bgcolor="#FFF0F0"> 비고 </th>
         </tr>
       </thead>
       <tbody align = "center">
         <!--{% for article in articles %}-->
           <tr>
-            <td>{{ team.pk }}</td>
-            <td>{{ team.club }}</td>
-            <td>{{ team.name }}</td>
-            <td>{{ team.gender }}</td>
+            <td>{{ mymatch.date }}</td>
+            <td>{{ mymatch.place }}</td>
+            <td>{{ mymatch.teamname }}</td>
+            <td>{{ mymatch.note }}</td>
           </tr>
           <!--{% endfor %}-->
         </tbody>
 
     </table>
 
+    <table width ="900" style="margin-top : 200px;">
+      <tr align ="center">
+        <td width="1500" style="font-size:25px; font-family : KorHB; padding : 15px;">내가 신청한 경기</td>
+      </tr>
+    </table>
+
+    <div id="underline1"></div>
+
+    <table border="1" width="850" align="center" cellspacing="0" >
+      <thead>
+      <tr>
+        <th width="150" align="center" bgcolor="#FFF0F0"> 매치일정 </th>
+        <th width="800" align="center" bgcolor="#FFF0F0"> 장소 </th>
+        <th width="300" align="center" bgcolor="#FFF0F0"> 팀이름 </th>
+        <th width="150" align="center" bgcolor="#FFF0F0"> 비고 </th>
+      </tr>
+    </thead>
+    <tbody align = "center">
+      <!--{% for article in articles %}-->
+        <tr>
+          <td>{{ match.date }}</td>
+          <td>{{ match.place }}</td>
+          <td>{{ match.teamname }}</td>
+          <td>{{ match.note }}</td>
+        </tr>
+        <!--{% endfor %}-->
+      </tbody>
+
+  </table>
+
       </div>
-  </nav>
+
 
   <aside>
     <div id="mySidenav" class="sidenav">
@@ -115,7 +144,7 @@
 
 
 
-  <footer>
+  <footer style="margin-top : 100px">
     <br><br>
     <span>[30019] 세종특별자치시 세종로 2511 고려대학교 세종캠퍼스</span>
     <span> T. 044-860-1114</span>
