@@ -61,7 +61,6 @@ nav {
 }
 nav a {
   margin: auto;
-  display: block;
   width: 20%;
   padding: .75em 0;
   color: #333;
@@ -200,10 +199,4 @@ footer {
   left : 250px;
   position:relative;
   top : -300px;
-}
-
-#write_button{
-  position : relative;
-  margin-bottom : 10px;
-  left : 700px;
 }
