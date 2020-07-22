@@ -33,7 +33,7 @@
   font-family: KorUM;
   font-size: 20px;
   color: #8B2331;
-  background-color: skyblue;
+  background-color: #C7B9AB;
   width: 300px;
   height: 43px;
   border-radius: 8px;
@@ -41,12 +41,43 @@
   margin-left: 4px;
 }
 
-.pw_forgot {
+.login_bottom_box {
   font-size: 20px;
   color: color: #555559;
-  padding-left: 200px;
-  padding-bottom: 10px;
-  /* border: 1px solid black;*/
+  padding-top: 40px;
+  padding-left: 30px;
+  padding-bottom: 50px;
+  margin-top : -30px;
+  margin-bottom: 60px;
+}
+
+
+td {
+  text-align: left;
+  padding-bottom: 5px;
+}
+
+#find_pw {
+  width: 100px;
+  height: 30px;
+  font-family: KorUB;
+  font-size: 15px;
+  text-align: center;
+  color: #8B2331;
+  border-radius: 3px;
+  border-width: 0;
+  background-color: #C7B9AB;
+}
+#sign_up {
+  width: 100px;
+  height: 30px;
+  font-family: KorUB;
+  font-size: 15px;
+  text-align: center;
+  color: #8B2331;
+  border-radius: 3px;
+  border-width: 0;
+  background-color: #C7B9AB;
 }
 
 #username {
