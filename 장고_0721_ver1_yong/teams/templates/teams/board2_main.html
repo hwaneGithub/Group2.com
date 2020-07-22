@@ -5,22 +5,53 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <title>KUMATCH</title>
+    <title>KUMATCH_board1</title>
     <link rel="stylesheet" href="{% static 'css/basic_layout_style.css' %}">
     <link rel="stylesheet" href="{% static 'css/image_slide_index_style.css' %}">
     <link rel="stylesheet" href="{% static 'css/slider_1.css' %}">
     <link rel="stylesheet" href="{% static 'KU_B/font.css' %}">
     <link rel="stylesheet" href="{% static 'KU_L/font.css' %}">
     <link rel="stylesheet" href="{% static 'KU_M/font.css' %}">
-
     <style media="screen">
-      #match_register{
-        font-size : 20px;
-        position : relative;
-        left : 45.8%;
-        color : blue;
-        margin-top : 45px;
+
+      #board_img_1{
+        width : 40px;
+        margin : 10px;
       }
+      #board_img_2{
+        width : 40px;
+        margin : 10px;
+      }
+      #board_img_3{
+        width : 40px;
+        margin : 10px;
+      }
+      #board_grid{
+        display : grid;
+        grid-template-columns : 1fr 3fr;
+        margin-left : 50px;
+        margin-top : 50px;
+      }
+
+      #board_name1{
+        width : 500px;
+        margin-left : 30px;
+      }
+      #board_menu{
+        border-style : solid;
+        border-width : 1px;
+        border-color : black;
+        margin-top : 30px;
+        width : 300px;
+      }
+      #line1{
+        border-top-style : solid;
+        border-color : #8B2331;
+        margin-bottom : 15px;
+        width : 1070px;
+      }
+
+      h2{font-size : 35px}
     </style>
   </head>
 
@@ -52,6 +83,48 @@
         <a href="{% url 'teams:teamAll' %}">커뮤니티</a>
         <div class="nav-underline"></div>
       </nav>
+      <hr id=grid_line>
+
+      <div id="board_grid">
+      <div class="board_main">
+          <div id="board_menu">
+            <span><img id=board_img_1 src="/static/img/board_1.png"> <a href="{% url 'teams:teamAll' %}" style="font-size : 15px; position:relative; top:-20px; text-decoration-style:double; color : red;">팀 소개 게시판</a></span><br>
+            <span><img id=board_img_2 src="/static/img/board_2.png"> <a href="{% url 'teams:recruitAll' %}" style="font-size : 15px; position:relative; top:-20px; text-decoration : none; color : black;">인원 모집 게시판</a></span><br>
+            <span><img id=board_img_3 src="/static/img/board_3.png"> <a href="board_3.html" style="font-size : 15px; position:relative; top:-20px; text-decoration : none; color : black;">사진 게시판</a></span><br>
+        </div>
+      </div>
+
+      <div id="board_name1">
+       <h2 style="  font-family: KorUL; color :#8B2331;">인원 모집 게시판</h2><br>
+       <div id=write_button> <a href="{% url 'teams:reg' %}" ><button class="btn btn-primary" type="button" > 게시글 작성 </button></a> </div>
+       <div id=line1> </div>
+          <table border="1" width="800" align="center" cellspacing="0" >
+            <thead>
+            <tr>
+              <th width="150" align="center" bgcolor="#FFF0F0"> 번 호 </th>
+              <th width="400" align="center" bgcolor="#FFF0F0"> 제 목 </th>
+              <th width="200" align="center" bgcolor="#FFF0F0"> 작성자 </th>
+              <th width="200" align="center" bgcolor="#FFF0F0"> 작성일 </th>
+            </tr>
+          </thead>
+          <tbody align = "center">
+        {% if recruit_list %}
+        {% for r in recruit_list %}
+
+            <td>{{ r.pk }}</td>
+            <td>{{ r.r_title }}</td>
+            <td>{{ r.r_writer }}</td>
+            <td>{{ r.r_date | date:"Y-m-d H:i" }}</td>
+          </tr>
+        {% endfor %}
+        {% else %}
+			<tr></tr><td>글이 없습니다.</td>
+		{% endif %}
+        </tbody>
+
+        </table>
+      </div>
+      </div>
 
       <aside>
         <div id="mySidenav" class="sidenav">
@@ -76,63 +149,13 @@
        </div>
       </aside>
       <!--<img id=main_img src="img/practice.jpg">-->
-      <div id="slide">    <!--사진 슬라이드 시작 -->
-        <input type="radio" name="pos" id="pos1" checked>
-        <input type="radio" name="pos" id="pos2">
-        <input type="radio" name="pos" id="pos3">
-        <input type="radio" name="pos" id="pos4">
-        <ul>
-          <li><image id="image1" src="/static/img\ball.jpg"></li>
-          <li><image id="image2" src="/static/img\wg.jpg"></li>
-          <li><image id="image3" src="/static/img\practice.jpg"></li>
-          <li><image id="image4" src="/static/img\game.jpg"></li>
-        </ul>
-        <p class="pos">
-          <label for="pos1"></label>
-          <label for="pos2"></label>
-          <label for="pos3"></label>
-          <label for="pos4"></label>
-        </p>
-      </div>
-      <br><br>
-
-      <div id="calender">
-        <section class="wrapper">
-            <div class="slides">
-              <article class="slide" data-index="1">
-                  <h2 style="position : relative; left : 49%;">07/16&nbsp;&nbsp;목요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
-
-              </article>
-              <article class="slide" data-index="2">
-                  <h2 style="position : relative; left : 49%;">07/17&nbsp;&nbsp;금요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
-              </article>
-              <article class="slide" data-index="3">
-                  <h2 style="position : relative; left : 49%; color : red;">07/18&nbsp;&nbsp;토요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
-              </article>
-              <article class="slide" data-index="4">
-                  <h2 style="position : relative; left : 49%; color : red;">07/19&nbsp;&nbsp;일요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
-              </article>
-              <article class="slide" data-index="5">
-                  <h2 style="position : relative; left : 49%;">07/20&nbsp;&nbsp;월요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
-              </article>
-              <article class="slide" data-index="6">
-                  <h2 style="position : relative; left : 49%;">07/21&nbsp;&nbsp;화요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
-              </article>
-            </div>
-            <button id="prev-btn">prev</button>
-            <button id="next-btn">next</button>
-            <span><a href="{% url 'match:my_matlst' %}"><input type="button" id="match_register" name="match_register" value="매치 등록하기"></a></span>
-        </section>
-        <script src="/static/js/slide_1.js"></script></div>
   </div>
-  <br><br><br><br>
-    <iframe id="match_list" src="/static/match_list.html" width="1000" height="300" float="center" ></iframe>
+
+
+  <div class= "container">
+    <p class = "title">page1</p>
+    <p class = "text">text</p>
+  </div>
 
 
     <footer>

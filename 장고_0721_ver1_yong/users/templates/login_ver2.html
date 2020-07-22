@@ -1,34 +1,42 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <title>login</title>
-  <link rel="stylesheet" href="css/basic_layout_style.css">
-  <link rel="stylesheet" href="css/login_style.css">
-  <link rel="stylesheet" href="KU_B/font.css">
-  <link rel="stylesheet" href="KU_L/font.css">
-  <link rel="stylesheet" href="KU_M/font.css">
+  <link rel="stylesheet" href="{% static 'css/basic_layout_style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/login_style.css' %}">
+  <link rel="stylesheet" href="{% static 'KU_B/font.css' %}">
+  <link rel="stylesheet" href="{% static 'KU_L/font.css' %}">
+  <link rel="stylesheet" href="{% static 'KU_M/font.css' %}">
 
 </head>
 
 <body>
-  <div class="wrapper_1">
-    <header>
-      <div id="grid_index">
-        <a href="basic_layout.html"><img id="home_button" src="img/CollogeSymbol.jpg" href="#"></a>
-        <div class="titletext"><h1><a href="basic_layout.html" style="text-decoration: none;color: #8B2331;">KUMATCH</a></h1></div>
+    <div class="wrapper_1">
+      <header>
+        <div id="grid_index">
+        <a href="{% url 'user:main' %}"><img id="home_button" src="/static/img/CollogeSymbol.jpg" href="{% url 'user:main' %}"></a>
+        <div class="titletext"><h1><a href="{% url 'user:main' %}" style="text-decoration: none;color: #8B2331;">KUMATCH</a></h1></div>
+        {% if user.is_authenticated %}
+        <div><br/>
+        <span>{{ user.nname }}님 환영합니다.</span><br/>
+        <a href="{% url 'user:logout' %}">로그아웃</a></div>
+        {% else %}
+
         <div id="login_choice">
-            <a href="login_ver1.html" style="text-decoration: none;">로그인</a>
-            <span id=login_or>또는</span>
-            <a href="sign_up.html" style="text-decoration: none;">회원가입</a>
+        <a href="{% url 'user:login' %}">로그인</a>
+        <span id=login_or>또는</span><a href="{% url 'user:signup' %}">회원가입</a>
         </div>
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img id="menu_button" src="img/personal_settings.png"></span>
-      </div>
-    </header>
+
+        {% endif %}
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img id="menu_button" src="/static/img/personal_settings.png"></span>
+        </div>
+      </header>
 
   <nav id="grid_login">
-    <img id="aside_img_login" src="img/football.jpg">
+    <img id="aside_img_login" src="/static/img/football.jpg">
     <div class="login_box">
       <div class="login_phr">
         <span style="font-weight:light;color:#555559;">축구하고 싶을 땐!</span><br>
@@ -36,11 +44,12 @@
       </div>
       <div class="login_inbox">
         <form action="#" method="post">
-          <div class="input_email">
-            <label style="font-size:15px;">ID 또는 이메일</label><br>
-            <input type="email" id="username" name="username" placeholder="@korea.ac.kr" style="font-size:15px;"><br><br><br>
+          {% csrf_token %}
+          <div>
+            <label style="font-size:15px;">ID</label><br>
+            <input type="text" id="username" name="username" placeholder="UserID" style="font-size:15px;"><br><br><br>
           </div>
-          <div class="input_pw">
+          <div>
             <label style="font-size:15px;">비밀번호</label><br>
             <input type="password" id="password"name="password" placeholder="PW"><br><br><br><br>
           </div>
@@ -48,46 +57,43 @@
       </form>
       </div>
       <div class="login_bottom_box">
-        <form class="" action="basic_layout.html" method="post">
         <table width="430" align ="center">
           <tr>
             <td>비밀번호가 기억나지 않으신가요?</td>
-            <td align="center"><input type="submit" name="find_pw" id="find_pw" value="비밀번호찾기"></td>
+            <td align="center"><a href="{% url 'user:main' %}"><input type="button" name="find_pw" id="find_pw" value="비밀번호 찾기"></a></td>
           </tr>
-        </form>
-        <form class="" action="sign_up.html" method="post">
+
           <tr>
             <td>아직 회원이 아니신가요?</td>
-            <td align="center"><input type="submit" name="sign_up" id="sign_up" value="회원가입"></td>
+            <td align="center"><a href="{% url 'user:signup' %}"><input type="button" name="sign_up" id="sign_up" value="회원 가입"></a></td>
           </tr>
         </table>
-    </form>
       </div>
     </div>
   </nav>
 
   <aside>
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
-      <div id="match_condition"><a href="my_matchlist.html"><img id="football_img" src="img/football.png">  나의 경기 현황</a></div><br><br>
-      <div id="modify_my_info"><a href="#"><img id="settings_img" src="img/settings.png">  정보 수정</a></div><br><br>
-      <div id="manage_team"><a href="team_manage.html"><img id="team_img" src="img/team.png">  팀 관리</a></div><br><br>
-      <div id="sns"><a href="https://www.instagram.com/" target="_blank"><img id="instagram_img" src="img/instagram.png"></a>
-                    <a href="https://www.facebook.com/" target="_blank"><img id="facebook_img" src="img/facebook.png"></a></div>
-      <div id="logo" style="text-align:center; font-family:KorUB; font-size:40px; color:#8B2331;">KUMATCH</a>
-    </div>
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
+          <div id="match_condition"><a href="{% url 'match:my_matlst' %}"><img id="football_img" src="/static/img/football.png">  나의 경기 현황</a></div><br><br>
+          <div id="modify_my_info"><a href="#"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
+          <div id="manage_team"><a href="{% url 'user:manage' %}"><img id="team_img" src="/static/img/team.png">  팀 관리</a></div><br><br>
+          <div id="sns"><a href="https://www.instagram.com/" target="_blank"><img id="instagram_img" src="/static/img/instagram.png"></a>
+                        <a href="https://www.facebook.com/" target="_blank"><img id="facebook_img" src="/static/img/facebook.png"></a></div>
+          <div id="logo" style="text-align:center; font-family:KorUB; font-size:40px; color:#8B2331;">KUMATCH</a>
+        </div>
 
-    <script>
-    function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-    }
+        <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
 
-    function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-    }
-    </script>
-    </div>
-  </aside>
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        </script>
+       </div>
+      </aside>
 </div>
 
   <footer>

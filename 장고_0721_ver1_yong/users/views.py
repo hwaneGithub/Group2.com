@@ -62,7 +62,7 @@ def signup_view(request):
 
     return render(request, "sign_up2.html")
 
-
+'''
 class BoardListView(LoginRequiredMixin, TemplateView):  # 게시글 목록
     login_url = '/login'
 
@@ -151,3 +151,4 @@ class BoardCreateUpdateView(TemplateView):  # 게시글 추가, 수정
             'board': self.get_object() if action == 'update' else None
         }
         return self.render_to_response(ctx)
+'''

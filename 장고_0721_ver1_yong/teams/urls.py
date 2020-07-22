@@ -26,4 +26,6 @@ urlpatterns = [
 	path('<int:id>/mod/', views.reaTeamOne, name='teamMod'),
 	path('modCon/', views.modConTeam, name='modCon'),
 	path('<int:id>/del/', views.delConTeam, name='teamDel'),
+	path('recruit/', views.recruitAll, name='recruitAll'),
+	#path('recruit/reg/', views.recuitNew, name='recruitNew'),
 ]
