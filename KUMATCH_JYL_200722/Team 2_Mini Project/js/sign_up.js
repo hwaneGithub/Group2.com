@@ -7,6 +7,8 @@ function checkValidate() {
         return false;
     } else if (!checkFirstName(sign.first_name.value)) {
         return false;
+    } else if (!checkNickname(sign.nickname.value)) {
+        return false;
     } else if (!checkMobileNum(sign.mobile_num.value)) {
         return false;
     } else if (!checkGender()) {
@@ -18,7 +20,7 @@ function checkValidate() {
     } else if (!checkAgreement()) {
         return false;
     }
-        return true;
+        return true, alert("회원가입이 완료되었습니다!");
 }
 
 function checkExistData(value, dataName) { //공란 항목 체크
@@ -93,6 +95,20 @@ function checkFirstName(first_name) { // 이름 칸 입력 여부 확인하기
     var firstNameRegExp = /^[가-힣]{1,5}$/; // 이름 유효성 확인 정규식
     if (!firstNameRegExp.test(first_name)) {
         alert("올바르지 않은 '이름' 형식 입니다.");
+        return false;
+    }
+    return true; //확인이 완료되었을 때
+}
+
+function checkNickname(nickname) { //아이디 칸 입력 여부 확인하기
+    if (!checkExistData(nickname, "'닉네임'을"))
+        return false;
+
+    var nicknameRegExp = /^[a-zA-z0-9가-힣]{4,16}$/; //아이디 유효성 검사 정규식
+    if (!nicknameRegExp.test(nickname)) {
+        alert("닉네임은 영문 대소문자와 숫자, 한글을 이용하여 4~16자리 입력해야합니다!");
+        sign.nickname.value = "";
+        sign.nickname.focus();
         return false;
     }
     return true; //확인이 완료되었을 때

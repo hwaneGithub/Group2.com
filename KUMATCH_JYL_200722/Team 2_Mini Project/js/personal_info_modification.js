@@ -6,7 +6,7 @@ function checkValidate2() {
     } else if (!checkRePosition()) {
         return false;
     }
-        return true;
+        return true, alert("회원정보 수정이 완료되었습니다!")
 }
 
 function checkExistData(value, dataName) { //공란 항목 체크

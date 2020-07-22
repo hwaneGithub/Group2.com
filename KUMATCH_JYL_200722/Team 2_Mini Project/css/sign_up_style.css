@@ -69,6 +69,15 @@ td {
   border-radius: 8px;
   border-color: #555559;
 }
+
+#nickname {
+  width : 240px;
+  height : 40px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+
 #mobile_num {
   width : 240px;
   height : 40px;
@@ -107,10 +116,8 @@ td {
   vertical-align: middle;
 }
 #position {
-  width: 50px;
   font-family: KorUL;
   font-size: 50px;
-  vertical-align: middle;
 }
 
 /*
