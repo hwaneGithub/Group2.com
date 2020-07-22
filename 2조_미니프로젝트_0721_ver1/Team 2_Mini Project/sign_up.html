@@ -39,9 +39,8 @@
           <table width="450" align="center">
             <tr>
               <td colspan="2">
-                  <label>이메일</label><br>
+                  <label>학교 이메일</label><br>
                   <input type="email" id="username" name="username" placeholder="@korea.ac.kr" style="font-size:15px;">
-              </td>
             </tr>
               <td>
                   <label>비밀번호</label><br>
@@ -64,7 +63,7 @@
             <tr>
               <td>
                   <label>휴대폰 번호</label><br>
-                  <input type="tel" id="mobile_num" name="mobile_num">
+                  <input type="tel" id="mobile_num" name="mobile_num" placeholder="010-1234-5678" style="font-size:15px;">
               </td>
               <td>
                   <label>성별</label><br>
@@ -233,10 +232,10 @@
               <td colspan="2">
                 <label>선호 포지션</label><br>
                 <div class="choice_position">
-                <input type="checkbox" id="position" name="GK" value="position">GK
-                <input type="checkbox" id="position" name="DF" value="position">DF
-                <input type="checkbox" id="position" name="MF" value="position">MF
-                <input type="checkbox" id="position" name="FW" value="position">FW
+                <input type="checkbox" id="position" name="position" value="GK">GK
+                <input type="checkbox" id="position" name="position" value="DF">DF
+                <input type="checkbox" id="position" name="position" value="MF">MF
+                <input type="checkbox" id="position" name="position" value="FW">FW
                 </div>
               </td>
             </tr>
@@ -258,7 +257,7 @@
               </td>
             </tr>
           </table>
-          <br><a href="login_ver1.html" id="go_login">이미 아이디가 있다면 여기에서 로그인하세요</a>
+          <br><br><span id="if">이미 아이디가 있다면 <a href="login_ver1.html" id="go_login">여기</a>에서 로그인하세요</span>
         </form>
 
             </nav>
