@@ -100,13 +100,14 @@ td {
 }
 
 .choice_position {
+  text-align: center;
   border: 1px solid black;
   height: 45px;
   border-radius: 8px;
   vertical-align: middle;
 }
 #position {
-  width: 80px;
+  width: 50px;
   font-family: KorUL;
   font-size: 50px;
   vertical-align: middle;
@@ -153,11 +154,17 @@ td {
 
 #none {
   text-decoration: underline;
+  color: blue;
 }
 
 #go_login {
   text-decoration: underline;
+  color: blue;
+}
+
+#if {
+  position: relative;
   padding-top: 50px;
   margin-top: 50px;
-  margin-left: 210px;
+  left: 28%;
 }
