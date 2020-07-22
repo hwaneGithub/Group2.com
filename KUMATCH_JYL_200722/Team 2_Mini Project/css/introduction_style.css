@@ -1,0 +1,154 @@
+table {
+  font-family: KorUB;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+#introduction_main_image {
+  width: 100%;
+  text-align: center;
+}
+
+#when {
+  padding-top: 30px;
+  font-family: KorUB;
+  font-size: 30px;
+  color: #555559;
+  text-align: center;
+
+}
+
+#answer {
+  padding-bottom: 10px;
+  font-family: KorUB;
+  font-weight: bold;
+  font-size: 40px;
+  color: #8B2331;
+  text-align: center;
+}
+
+#go_sign {
+  margin-left: 655px;
+  margin-bottom: 80px;
+  width: 200px;
+  height: 45px;
+  font-family: KorUB;
+  font-size: 20px;
+  border: 0px;
+  background-color: #C7B9AB;
+  color: #555559;
+}
+
+#play {
+  font-size: 30px;
+  color: #555559;
+  padding-left: 25px;
+  padding-bottom: 10px;
+}
+
+#img1 {
+  float: left;
+  width: 100%;
+}
+
+#img2 {
+  padding-top: 0;
+  width: 100%;
+  float: right;
+}
+
+#img3 {
+  width: 100%;
+}
+
+#text1, #text3, #text5 {
+  font-size: 35px;
+  color: #8B2331;
+  padding-left: 130px;
+}
+
+#text2, #text4, #text6 {
+  font-size: 28px;
+  color: #555559;
+  padding-left: 180px;
+}
+
+
+
+/*
+#introduction_main_image{
+  width : 60%;
+  position : relative;
+  left : 21%;
+}
+a{font-family:KorUB;text-decoration: none; color : black; border-style:groove; border-color : red;}
+
+#center_image1{
+  display : grid;
+  grid-template-columns: 1fr 1fr;
+}
+#introtext3{
+  position :relative;
+  margin-top : 20px;
+  left : 40%;
+}
+#introtext2{
+  position : relative;
+  left : 43%;
+}
+#img1{
+  width : 87%;
+}
+.center_text{
+  margin-left : 20px;
+}
+#img2{
+  width : 49%;
+  position : absolute;
+  right : 0px;
+}
+#img3{
+  position : absolute;
+  left : 0px;
+  width : 50%;
+  bottom : -1520px;
+}
+
+.sign_up_link{
+  position : relative;
+  left : 46.5%;
+}
+
+ul{
+  color : #585858;
+  font-size : 25px;
+}
+
+#text1r2d{
+  font-family:KorUB;
+  color : #0B0719;
+  position : absolute;
+  right : 250px;
+  top : 925px;
+  font-size : 30px;
+}
+
+#text2r1d{
+  font-family:KorUB;
+  color : #0B0719;
+  position : absolute;
+  left : 250px;
+  top : 1425px;
+  font-size : 30px;
+}
+
+#text3r2d{
+  font-family:KorUB;
+  color : #0B0719;
+  position : absolute;
+  right : 250px;
+  top : 1880px;
+  font-size : 30px;
+}
+*/

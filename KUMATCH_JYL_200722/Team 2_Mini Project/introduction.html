@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KUMATCH 소개</title>
+    <link rel="stylesheet" href="KU_B/font.css">
+    <link rel="stylesheet" href="KU_L/font.css">
+    <link rel="stylesheet" href="KU_M/font.css">
+    <link rel="stylesheet" href="KU_L/font.css">
+    <link rel="stylesheet" href="css/basic_layout_style.css">
+    <link rel="stylesheet" href="css/slider_1.css">
+    <link rel="stylesheet" href="css/introduction_style.css">
+  </head>
+
+  <body>
+    <div class="wrapper_1">
+      <header>
+        <div id="grid_index">
+          <a href="basic_layout.html"><img id="home_button" src="img/CollogeSymbol.jpg" href="#"></a>
+          <div class="titletext"><h1><a href="basic_layout.html" style="text-decoration: none;color: #8B2331;">KUMATCH</a></h1></div>
+          <div id="login_choice">
+              <a href="login_ver1.html" style="text-decoration: none;">로그인</a>
+              <span id=login_or>또는</span>
+              <a href="sign_up.html" style="text-decoration: none;">회원가입</a>
+          </div>
+          <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img id="menu_button" src="img/personal_settings.png"></span>
+        </div>
+      </header>
+
+      <nav>
+          <a href="notification_board.html">공지사항</a>
+          <a href="introduction.html" class="is-current">KUMATCH 소개</a>
+          <a href="board_main.html">커뮤니티</a>
+        <div class="nav-underline"></div>
+      </nav>
+
+      <aside>
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
+          <div id="match_condition"><a href="my_matchlist.html"><img id="football_img" src="img/football.png">  나의 경기 현황</a></div><br><br>
+          <div id="modify_my_info"><a href="personal_info_modification.html"><img id="settings_img" src="img/settings.png">  정보 수정</a></div><br><br>
+          <div id="manage_team"><a href="team_manage.html"><img id="team_img" src="img/team.png">  팀 관리</a></div><br><br>
+          <div id="sns"><a href="https://www.instagram.com/" target="_blank"><img id="instagram_img" src="img/instagram.png"></a>
+                        <a href="https://www.facebook.com/" target="_blank"><img id="facebook_img" src="img/facebook.png"></a></div>
+          <div id="logo" style="text-align:center; font-family:KorUB; font-size:40px; color:#8B2331;">KUMATCH</a></div>
+
+        <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        </script>
+       </div>
+      </aside>
+
+      <article>
+        <table>
+          <tr>
+            <td colspan="2">
+              <img id="introduction_main_image" src="img/stadium_intro.jpg" alt="소개 이미지">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div id="when">축구&풋살하고 싶을 땐!</div>
+              <br>
+              <div id="answer">KUMATCH</div>
+              <br>
+              <a href="sign_up.html"><input type="submit" name="go_sign" id="go_sign" value="지금바로 시작하기"></a>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div id="play">Let's Play!!</div>
+            </td>
+          </tr>
+          <tr>
+            <td width="50%">
+              <img id="img1" src="img/introduction_2.jpg" alt="소개 이미지2">
+            </td>
+            <td>
+              <div id="text1">내가 하고 싶을 때!</div>
+              <br>
+              <div id="text2">아침부터 저녁, 평일부터 주말까지</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div id="text3">내가 하고 싶은 곳에서!!</div>
+              <br>
+              <div id="text4">집, 학교 등 나와 가까운 구장에서!</div>
+            </td>
+            <td>
+              <img id="img2" src="img/introduction_3.jpg" alt="소개 이미지3">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img id="img3" src="img/introduction_4.jpg" alt="소개 이미지4">
+            </td>
+            <td>
+              <div id="text5">내가 하고 싶은 사람들과!!!</div>
+              <br>
+              <div id="text6">여성매치, 혼성매치, 친구들과 함께</div>
+            </td>
+          </tr>
+        </table>
+      </article>
+
+    </div>
+
+
+    <footer>
+      <br><br>
+      <span>[30019] 세종특별자치시 세종로 2511 고려대학교 세종캠퍼스</span>
+			<span> T. 044-860-1114</span>
+			<span> F. 044-860-1048</span>
+				<p style="color:#C7B9AB;">Copyright ⓒ <span style="color:#FF661B;">KOREA University Sejong Campus</span> All Rights Reserved</p>
+    </footer>
+  </body>
+</html>
