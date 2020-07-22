@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'KorUM';
+  src: url('KorUM.svg#KorUM') format('svg'),
+       url('KorUM.ttf') format('truetype'),
+       url('KorUM.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: '고려대학교M';
+  src: url('고려대학교M.eot');
+  src: url('고려대학교M.eot?#iefix') format('embedded-opentype'),
+       url('고려대학교M.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
