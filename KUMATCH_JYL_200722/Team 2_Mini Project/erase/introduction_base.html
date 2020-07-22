@@ -1,15 +1,27 @@
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <title>KUMATCH 공지사항</title>
+    <title>KUMATCH</title>
     <link rel="stylesheet" href="css/basic_layout_style.css">
     <link rel="stylesheet" href="css/image_slide_index_style.css">
-    <link rel="stylesheet" href="css/notification_board_style.css">
+    <link rel="stylesheet" href="css/slider_1.css">
     <link rel="stylesheet" href="KU_B/font.css">
     <link rel="stylesheet" href="KU_L/font.css">
     <link rel="stylesheet" href="KU_M/font.css">
+    <style media="screen">
+      #introduction{
+        position: relative;
+      }
+
+      body {margin:0
+overflow-y:auto;
+overflow-h:hidden;
+
+}
+    </style>
   </head>
 
   <body>
@@ -26,13 +38,6 @@
           <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img id="menu_button" src="img/personal_settings.png"></span>
         </div>
       </header>
-
-      <nav>
-          <a href="notification_board.html">공지사항</a>
-          <a href="introduction.html" class="is-current">KUMATCH 소개</a>
-          <a href="board_main.html">커뮤니티</a>
-        <div class="nav-underline"></div>
-      </nav>
 
       <aside>
         <div id="mySidenav" class="sidenav">
@@ -56,48 +61,14 @@
         </script>
        </div>
       </aside>
-
-      <article id="grid_notification">
-        <img id="aside_img_notification" src="img/dog_ball.jpg">
-        <div id="center_line">
-          <div id="notification_main">
-           <h2 style="  font-family: KorUL; color :#8B2331; margin-top : 50px; margin-left:50px; font-size : 40px;">공지사항</h2><br>
-           <div id=line1> </div>
-              <table id="table1" border="1" width="700" align="center" cellspacing="0">
-                <thead>
-                <tr>
-                  <th width="50" align="center" bgcolor="#FFF0F0"> 번 호 </th>
-                  <th width="450" align="center" bgcolor="#FFF0F0"> 제 목 </th>
-                  <th width="100" align="center" bgcolor="#FFF0F0"> 작성자 </th>
-                  <th width="100" align="center" bgcolor="#FFF0F0"> 작성일 </th>
-                </tr>
-              </thead>
-              <tbody align = "center">
-                <!--{% for ddd in ddd %}-->
-                  <tr>
-                    <td>{{ article_noti.pk }}</td>
-                    <td>{{ article_noti.title }}</td>
-                    <td>{{ article_noti.author }}</td>
-                    <td>{{ article_noti.date }}</td>
-                  </tr>
-                  <!--{% endfor %}-->
-                </tbody>
-
-            </table>
-          </div>
-        </div>
-    </article>
-  </div>
-
-  <footer style="font-size:15px;">
-    <br><br>
-    <span>[30019] 세종특별자치시 세종로 2511 고려대학교 세종캠퍼스</span>
-    <span> T. 044-860-1114</span>
-    <span> F. 044-860-1048</span>
-      <p style="color:#C7B9AB;">Copyright ⓒ <span style="color:#FF661B;">KOREA University Sejong Campus</span> All Rights Reserved</p>
-  </footer>
-
-
-
+      <!--<img id=main_img src="img/practice.jpg">-->
+    <iframe id="introduction" src="introduction_page.html" width="100%" height="2500px" scrolling="no" frameborder="0"></iframe>
+    <footer>
+      <br><br>
+      <span>[30019] 세종특별자치시 세종로 2511 고려대학교 세종캠퍼스</span>
+			<span> T. 044-860-1114</span>
+			<span> F. 044-860-1048</span>
+				<p style="color:#C7B9AB;">Copyright ⓒ <span style="color:#FF661B;">KOREA University Sejong Campus</span> All Rights Reserved</p>
+    </footer>
   </body>
 </html>
