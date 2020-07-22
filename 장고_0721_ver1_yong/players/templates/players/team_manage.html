@@ -86,81 +86,66 @@
        </div>
       </aside>
 
-
+  <nav id="grid_login">
+    <img id="aside_img_login" src="/static/img/team_manage.jpg">
     <div class="login_box">
 
 
-
-      <table width ="1000">
+      <!--<div id="team_space"><input id="team_button" type="button" name="team_but1" font-family ="KorUB" value="팀 만들기"> </div>-->
+      <table width ="300">
         <tr align ="center">
-          <td width="1500" style="font-size:25px; font-family : KorHB; padding : 15px;">내가 등록한 경기</td>
-          <td><span><a href="#"><input type="button" id="match_register" name="match_register" value="매치 등록하기"></a></span></td>
+          <td width="100" style="font-size:25px; font-family : KorHB; padding : 15px;">나의 팀</td>
+          <!--<td width="200">{{ team.name }}</td>-->
         </tr>
       </table>
 
       <div id="underline1"></div>
-
-      <table border="1" width="850" align="center" cellspacing="0" >
+      <form action="{% url 'players:regCon' %}" method="post">
+      <table border="1" width="650" align="center" cellspacing="0" >
         <thead>
         <tr>
-          <th width="150" align="center" bgcolor="#FFF0F0"> 매치일정 </th>
-          <th width="800" align="center" bgcolor="#FFF0F0"> 장소 </th>
-          <th width="300" align="center" bgcolor="#FFF0F0"> 팀이름 </th>
-          <th width="150" align="center" bgcolor="#FFF0F0"> 비고 </th>
+          <th width="50" align="center" bgcolor="#FFF0F0"> 번 호 </th>
+          <th width="800" align="center" bgcolor="#FFF0F0"> 학과 or 동아리 </th>
+          <th width="300" align="center" bgcolor="#FFF0F0"> 이름 </th>
+          <th width="50" align="center" bgcolor="#FFF0F0"> 성별 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 관리 </th>
         </tr>
       </thead>
       <tbody align = "center">
-        <!--{% for article in articles %}-->
+        {% for p in player_list %}
+        {% if p.p_nname == user.nname %}
           <tr>
-            <td>{{ mymatch.date }}</td>
-            <td>{{ mymatch.place }}</td>
-            <td>{{ mymatch.teamname }}</td>
-            <td>{{ mymatch.note }}</td>
+            <td>{{ p.pk }}</td>
+            <td>{{ p.p_club }}</td>
+            <td>{{ p.p_name }}</td>
+            <td>{{ p.p_gender }}</td>
+            <td><input type="button" value="삭제" onclick = "location.href = '{% url 'players:playerDel' p.pk %}' "></td>
           </tr>
-          <!--{% endfor %}-->
+          {% endif %}
+          {% endfor %}
+		{% csrf_token %}
+          <tr>
+            <td><input type="hidden" value="{{ user.nname }}" name="nname">#</td>
+            <td><input type="text" name="club"></td>
+            <td><input type="text" name="name"></td>
+            <td><select name="gender">
+			<option value="남성">남성</option>
+			<option value="여성">여성</option>
+		    </select></td>
+            <td><input type="submit" name="Register" value="등록"></td>
+          </tr>
+        </table>
+		</form>
         </tbody>
 
-    </table>
-
-    <table width ="900" style="margin-top : 200px;">
-      <tr align ="center">
-        <td width="1500" style="font-size:25px; font-family : KorHB; padding : 15px;">내가 신청한 경기</td>
-      </tr>
-    </table>
-
-    <div id="underline1"></div>
-
-    <table border="1" width="850" align="center" cellspacing="0" >
-      <thead>
-      <tr>
-        <th width="150" align="center" bgcolor="#FFF0F0"> 매치일정 </th>
-        <th width="800" align="center" bgcolor="#FFF0F0"> 장소 </th>
-        <th width="300" align="center" bgcolor="#FFF0F0"> 팀이름 </th>
-        <th width="150" align="center" bgcolor="#FFF0F0"> 비고 </th>
-      </tr>
-    </thead>
-    <tbody align = "center">
-      <!--{% for article in articles %}-->
-        <tr>
-          <td>{{ match.date }}</td>
-          <td>{{ match.place }}</td>
-          <td>{{ match.teamname }}</td>
-          <td>{{ match.note }}</td>
-        </tr>
-        <!--{% endfor %}-->
-      </tbody>
-
-  </table>
 
       </div>
-
-
-
+  </nav>
 </div>
 
 
 
-  <footer style="margin-top : 100px">
+  <footer>
     <br><br>
     <span>[30019] 세종특별자치시 세종로 2511 고려대학교 세종캠퍼스</span>
     <span> T. 044-860-1114</span>

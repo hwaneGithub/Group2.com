@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.shortcuts import render
 from teams.models import Team
 from teams.models import Recruit
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -13,15 +14,17 @@ def regTeam(request):
 def regConTeam(request):
     name = request.POST['name']
     major = request.POST['major']
+    memo = request.POST['memo']
     captain = request.POST['captain']
     memCount = request.POST['memCount']
 
-    qs = Team(t_name=name, t_major=major, t_captain=captain, t_memCount=memCount)
+    qs = Team(t_name=name, t_major=major, t_memo=memo, t_captain=captain, t_memCount=memCount)
     qs.save()
 
     return HttpResponseRedirect(reverse('teams:teamAll'))
 
 
+@login_required(login_url='user:login')
 def reaTeamAll(request):
     qs = Team.objects.all()  # 팀 정보 가져오기
     context = {'team_list': qs}
@@ -43,6 +46,7 @@ def reaTeamOne(request, id):
 def modConTeam(request):
     name = request.POST['name']
     major = request.POST['major']
+    memo = request.POST['memo']
     captain = request.POST['captain']
     memCount = request.POST['memCount']
     id = request.POST['id']
@@ -51,6 +55,7 @@ def modConTeam(request):
 
     t_qs.t_name = name
     t_qs.t_major = major
+    t_qs.t_memo = memo
     t_qs.t_captain = captain
     t_qs.t_memCount = memCount
 

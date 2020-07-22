@@ -7,6 +7,7 @@ class Team(models.Model):
     t_major = models.CharField(max_length=30)
     t_captain = models.CharField(max_length=30)
     t_memCount = models.IntegerField(default=0)
+    t_memo = models.TextField(null=False)
 
     def __str__(self):
         return self.t_name

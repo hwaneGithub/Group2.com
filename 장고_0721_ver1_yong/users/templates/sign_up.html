@@ -43,8 +43,9 @@
             <span style="font-weight:light;color:#555559;">축구하고 싶을 땐!</span><br>
             <span style="font-family:KorUB;font-weight:bold;color:#8B2331;">KUMATCH</span>
           </div>
-          <form name="sign" id="sign" onsubmit="return checkValidate()" action="#" method="post" enctype="text/plain">
+          <form name="sign" id="sign" onsubmit="return checkValidate()" action="#" method="post">
             {% csrf_token %}
+            {% include "form_errors.html" %}
           <table width="450" align="center">
             <tr>
               <td colspan="2">
@@ -281,7 +282,7 @@
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
           <div id="match_condition"><a href="{% url 'match:my_matlst' %}"><img id="football_img" src="/static/img/football.png">  나의 경기 현황</a></div><br><br>
           <div id="modify_my_info"><a href="#"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
-          <div id="manage_team"><a href="{% url 'user:manage' %}"><img id="team_img" src="/static/img/team.png">  팀 관리</a></div><br><br>
+          <div id="manage_team"><a href="{% url 'players:playerAll' %}"><img id="team_img" src="/static/img/team.png">  팀 관리</a></div><br><br>
           <div id="sns"><a href="https://www.instagram.com/" target="_blank"><img id="instagram_img" src="/static/img/instagram.png"></a>
                         <a href="https://www.facebook.com/" target="_blank"><img id="facebook_img" src="/static/img/facebook.png"></a></div>
           <div id="logo" style="text-align:center; font-family:KorUB; font-size:40px; color:#8B2331;">KUMATCH</a>
