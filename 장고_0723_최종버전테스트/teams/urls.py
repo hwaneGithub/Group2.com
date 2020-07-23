@@ -29,6 +29,13 @@ urlpatterns = [
 	path('modCon/', views.modConTeam, name='modCon'),
 	path('<int:id>/del/', views.delConTeam, name='teamDel'),
 
+
+
 	path('recruit/', views.recruitAll, name='recruitAll'),
-	#path('recruit/reg/', views.recuitNew, name='recruitNew'),
+	path('recruit/reg/', views.recruitNew, name='recruitNew'),
+	path('recruit/regCon/', views.recruitCon, name='recruitCon'),
+	path('recruit/<int:id>/det/', views.recruitDet, name='recruitDet'),
+	path('recruit/<int:id>/mod/', views.recruitOne, name='recruitMod'),
+	path('recruit/modCon/', views.modRecruit, name='recmodCon'),
+	path('recruit/<int:id>/del/', views.delConRecruit, name='recruitDel'),
 ]

@@ -6,7 +6,7 @@ from teams.models import Recruit
 from django.contrib.auth.decorators import login_required
 
 
-# Create your views here.
+#############################팀소개 게시판##########################################
 def regTeam(request):
     return render(request, 'teams/board_create.html')
 
@@ -72,7 +72,60 @@ def delConTeam(request, id):
     return HttpResponseRedirect(reverse('teams:teamAll'))
 
 
+#############################인원모집게시판##########################################
 def recruitAll(request):
     qs = Recruit.objects.all()  # 팀 정보 가져오기
     context = {'recruit_list': qs}
     return render(request, 'teams/board2_main.html', context)
+
+
+def recruitNew(request):
+    return render(request, 'teams/board2_create.html')
+
+
+def recruitCon(request):
+    title = request.POST['title']
+    memo = request.POST['memo']
+    writer = request.POST['writer']
+
+    qs = Recruit(r_title=title, r_memo=memo, r_writer=writer)
+    qs.save()
+
+    return HttpResponseRedirect(reverse('teams:recruitAll'))
+
+
+def recruitDet(request, id):
+    qs = Recruit.objects.get(id=id)
+    context = {'recruit_info': qs}
+    return render(request, 'teams/board2_detail.html', context)
+
+
+def recruitOne(request, id):
+    qs = Recruit.objects.get(id=id)
+    context = {'recruit_info': qs}
+    return render(request, 'teams/board2_update.html', context)
+
+
+def modRecruit(request):
+    title = request.POST['title']
+    memo = request.POST['memo']
+    writer = request.POST['writer']
+    id = request.POST['id']
+
+    r_qs = Recruit.objects.get(id=id)  # Query String
+
+    r_qs.r_title = title
+    r_qs.r_memo = memo
+    r_qs.r_writer = writer
+
+    r_qs.save()
+
+    # templates로 이동
+    return HttpResponseRedirect(reverse('teams:recruitAll'))
+
+
+def delConRecruit(request, id):
+    qs = Recruit.objects.get(id=id)
+    qs.delete()
+
+    return HttpResponseRedirect(reverse('teams:recruitAll'))
