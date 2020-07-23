@@ -91,6 +91,12 @@ def signup_view(request):
 
     return render(request, "sign_up.html")
 
+'''
+정보 수정
+'''
+def info_view(request):
+    return render(request, "personal_info_modification.html")
+
 
 
 '''

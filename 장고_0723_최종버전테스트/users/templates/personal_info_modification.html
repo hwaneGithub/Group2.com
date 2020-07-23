@@ -1,39 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>KUMATCH 회원 정보 수정</title>
+    <link rel="stylesheet" href="/static/css/basic_layout_style.css">
+    <link rel="stylesheet" href="/static/css/personal_info_modification_style.css">
+    <script src="/static/js/personal_info_modification.js"></script>
+    <link rel="stylesheet" href="/static/KU_B/font.css">
+    <link rel="stylesheet" href="/static/KU_L/font.css">
+    <link rel="stylesheet" href="/static/KU_M/font.css">
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <title>sign_up page</title>
-  <script type="text/javascript" src="static/js/sign_up.js"></script>
-  <link rel="stylesheet" href="static/css/index_style.css">
-  <link rel="stylesheet" href="static/css/login_style.css">
+  <body>
+    <div class="wrapper_1">
+      <header>
+        <div id="grid_index">
+        <a href="{% url 'user:main' %}"><img id="home_button" src="/static/img/CollogeSymbol.jpg" href="{% url 'user:main' %}"></a>
+        <div class="titletext"><h1><a href="{% url 'user:main' %}" style="text-decoration: none;color: #8B2331;">KUMATCH</a></h1></div>
+        {% if user.is_authenticated %}
+        <div><br><br><br><br>
+        <span>{{ user.nname }}님 환영합니다.</span><br/>
+        <a href="{% url 'user:logout' %}">로그아웃</a></div>
+        {% else %}
 
-  <link rel="stylesheet" href="static/KU_B/font.css">
-  <link rel="stylesheet" href="static/KU_L/font.css">
-  <link rel="stylesheet" href="static/KU_M/font.css">
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+        <div id="login_choice">
+        <a href="{% url 'user:login' %}">로그인</a>
+        <span id=login_or>또는</span><a href="{% url 'user:signup' %}">회원가입</a>
+        </div>
+
+        {% endif %}
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img id="menu_button" src="/static/img/personal_settings.png"></span>
+        </div>
+      </header>
+
+      <nav>
+        <a href="{% url 'user:notice' %}">공지사항</a>
+        <a href="{% url 'user:intro' %}" class="is-current">KUMATCH 소개</a>
+        <a href="{% url 'teams:teamAll' %}">커뮤니티</a>
+        <div class="nav-underline"></div>
+      </nav>
+
+      <aside>
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
+          <div id="match_condition"><a href="{% url 'match:my_matlst' %}"><img id="football_img" src="/static/img/football.png">  나의 경기 현황</a></div><br><br>
+                  {% if user.is_authenticated %} <!-- 로그인 되어있으면 정보수정 창으로-->
+          <div id="modify_my_info"><a href="{% url 'user:info' %}"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
+                  {% else %}
+          <div id="modify_my_info"><a href="{% url 'user:login' %}"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
+                  {% endif %}
+          <div id="manage_team"><a href="{% url 'players:playerAll' %}"><img id="team_img" src="/static/img/team.png">  팀 관리</a></div><br><br>
+          <div id="sns"><a href="https://www.instagram.com/" target="_blank"><img id="instagram_img" src="/static/img/instagram.png"></a>
+                        <a href="https://www.facebook.com/" target="_blank"><img id="facebook_img" src="/static/img/facebook.png"></a></div>
+          <div id="logo" style="text-align:center; font-family:KorUB; font-size:40px; color:#8B2331;">KUMATCH</a>
+        </div>
+
+        <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        </script>
+       </div>
+      </aside>
+
+      <nav id="grid_modify">
+        <img id="aside_img_sign_up" src="/static/img/ready.jpg">
+        <div class="modify_box">
+          <div class="sign_up_phr">
+            <span style="font-weight:light;color:#555559;">축구하고 싶을 땐!</span><br>
+            <span style="font-family:KorUB;font-weight:bold;color:#8B2331;">KUMATCH</span>
+          </div>
+          <form name="modify" id="modify" onsubmit="return checkValidate2()" action="#" method="post">
+          <table width="450" align="center">
+            <tr id="welcome_phr">
+              <td>
+                <span id=personal_name></span>
+              </td>
+              <td>
+                <span id="welcome">{{ user.nname }}님 환영 합니다!</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                  <label>비밀번호 변경</label><br>
+                  <input type="password" id="change_pw" name="change_pw">
+              </td>
+              <td>
+                  <label>변경 비밀번호 확인</label><br>
+                  <input type="password" id="con_chpw" name="con_chpw">
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                  <label>휴대폰 번호 변경</label><br>
+                  <input type="tel" id="change_mobile" name="change_mobile" placeholder="010-1234-5678" style="font-size:15px;">
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <label>선호 포지션</label><br>
+                <div class="change_position">
+                <input type="checkbox" id="re_position" name="re_position" value="GK">GK
+                <input type="checkbox" id="re_position" name="re_position" value="DF">DF
+                <input type="checkbox" id="re_position" name="re_position" value="MF">MF
+                <input type="checkbox" id="re_position" name="re_position" value="FW">FW
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" id="change_button">
+                <input type="submit" id="modify_complete" name="modify_complete" value="정보 수정">
+              </td>
+            </tr>
+          </table>
+        </form>
+        <br><br><br><br>
+        <form action="#" method="post">
+          <input type="submit" id="withdrawal" name="withdrawal" value="회원 탈퇴 하기">
+        </form>
+
+            </nav>
 
 
-</head>
+          </div>
 
+<!--
 <body onload="">
 
   <header>
-    <div id="grid">
-      <div><img id="home_button" href="{% url 'user:main' %}" src="static/img/CollogeSymbol.jpg" ></div>
-      <div class="titletext"><h1><a href="{% url 'user:main' %}">KUMATCH</a></div></h1>
-      <div id="login_choice">
-          <a href="{% url 'user:login' %}" onclick="">로그인</a>
-          <span id=login_or>또는</span>
-          <a href="{% url 'user:signup' %}" onclick="">회원가입</a>
+    <a href="C:\Users\admin\Desktop\2조미니프로젝트_웹\KUMATCH\main.html"><img id=main_logo src="C:\Users\admin\Desktop\2조미니프로젝트_웹\KUMATCH\image\main_logo.png" alt=""></a>
+    <div class="titletext">KUMATCH</div>
+    <div id="login_button">
+      <a href="#"><img id=menu_img src="C:\Users\admin\Desktop\2조미니프로젝트_웹\KUMATCH\image\pngwing.com.png" alt=""></a>
+      <div id="login" class="login">
+        <a href="login_ver1.html" onclick="">로그인</a>
+        <span id=login_or>또는</span>
+        <a href="sign_up.html" onclick="">회원가입</a>
       </div>
-      <div><img id="menu_button" src="static/img/list_icon.png" href="#"></div>
     </div>
-  </header>
+    <hr> -->
   <!--signup form -->
-    <div class="login_box">
-      <form action="" method="POST">
-        {% csrf_token %}
+  <!--  <div class="login_box">
+      <br><br>
+      <form class="" action="index.html" method="post">
+
       <table border="1" weigth="600" align="center" cellspacing="0">
         <tr>
           <th colspan="5" weight="600" align="center" bgcolor="#ffdbe6">회원 기본 정보 </th>
@@ -42,7 +158,7 @@
           <td align="center">
             <b><span id="essential_line">* </span>아이디:<b> </td>
           <td colspan="5">
-            <input type="text" name="username" value="" size="25" maxlength="12" placeholder="4~12자의 영문 대소문자와 숫자" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력" required />
+            <input type="text" name="id" value="" size="25" maxlength="12" placeholder="4~12자의 영문 대소문자와 숫자" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력" required />
             <b><span id="essential_text">(* 필수 입력)</span></b>
           </td>
         </tr>
@@ -50,16 +166,16 @@
           <td align="center">
             <b><span id="essential_line">* </span>닉네임:<b> </td>
           <td colspan="5">
-            <input type="text" name="nname" value="" size="25" maxlength="12">
-            <input type="button" name="namecheck" value="check" onclick="">
+            <input type="text" name="nname" value="" size="25" maxlength="12"  pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력" required />
+            <input type="button" name="namechck" value="check" onclick="">
           </td>
         </tr>
         <tr>
           <td align="center"><b><span id="essential_line">* </span>비밀번호:<b></td>
           <td colspan="5">
-            <input type="password" id="pw" name="password" value="" maxlength="12" size="25" placeholder="4~12자의 영문 대소문자와 숫자" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력" required />
-            <!--HTML 내에서 pattern을 이용하여 정규표현식 pw 검사-->
-          </td>
+            <input type="password" id="pw" name="pw" value="" maxlength="12" size="25" placeholder="4~12자의 영문 대소문자와 숫자" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력" required />
+            <!-- HTML 내에서 pattern을 이용하여 정규표현식 pw 검사-->
+      <!--    </td>
         </tr>
         <tr>
           <td align="center"><b><span id="essential_line">* </span>비밀번호확인:<b></td>
@@ -73,20 +189,14 @@
         <tr>
           <td align="center"><b><span id="essential_line">* </span>메일주소:</b></td>
           <td colspan="5">
-            <input type="text" name="email" value="" size="30" pattern="[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}" required />
+            <input type="text" name="mail" value="" size="30" pattern="[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}" required />
 
-          </td>
-        </tr>
-        <tr>
-          <td align="center"><b><span id="essential_line">* </span>성: <b></td>
-          <td colspan="5">
-            <input type="text" name="firstname" value="" size="30" required />
           </td>
         </tr>
         <tr>
           <td align="center"><b><span id="essential_line">* </span>이름: <b></td>
           <td colspan="5">
-            <input type="text" name="lastname" value="" size="30" required />
+            <input type="text" name="name" value="" size="30" required />
           </td>
         </tr>
         <tr>
@@ -239,30 +349,16 @@
           </td>
         </tr>
         <tr rowspan="5">
-          <td align="center"><b>비밀번호 찾기 질문:<b></td>
+          <td align="center"><b>자기소개:<b></td>
           <td colspan="5">
-            <select  name="birth_day" size = "1">
-              <option value="pw_aw1">당신이 태어난 고향은 어디인가요?</option>
-              <option value="pw_aw2">당신이 제일 좋아하는 연예인은?</option>
-              <option value="pw_aw3">당신의 보물 1호는?</option>
-              <option value="pw_aw4">당신의 노래방 애창곡은?</option>
-              <option value="pw_aw5">당신의 취미는 무엇인가요?</option>
-              <option value="pw_aw6">당신이 제일 좋아하는 음식은?</option>
-              <option value="pw_aw7">당신이 졸업한 초등학교 이름은?</option>
-            </select></td>
-        </tr>
-        <tr rowspan="5">
-          <td></td>
-          <td colspan="5">
-            <input type="text" name="pw_aw" value="" size="30" required />
-          </td>
+            <textarea position = "fixed"name="introdutcion" rows="5" cols="55"></textarea></td>
         </tr>
 
         <tr rowspan="5">
           <td align="center"><b>학생증 사진첨부</b></td>
           <td colspan="5"><input type="button" name="insert" value="파일첨부"></td>
         </tr>
-<td colspan="5" align="center"><a href="{% url 'user:login' %}" style="font-size:10px; text-decoration:none; color:#89a1f0">이미 아이디가 있다면 여기에서 로그인 하세요 </a></td>
+<td colspan="5" align="center"><a href="login_ver1.html" style="font-size:10px; text-decoration:none; color:#89a1f0">이미 아이디가 있다면 여기에서 로그인 하세요 </a></td>
 
       </table>
 
@@ -275,8 +371,14 @@
 </form>
 
       <div>
-  </header>
-
+  </header>-->
+  <footer>
+    <br><br>
+    <span>[30019] 세종특별자치시 세종로 2511 고려대학교 세종캠퍼스</span>
+    <span> T. 044-860-1114</span>
+    <span> F. 044-860-1048</span>
+      <p style="color:#C7B9AB;">Copyright ⓒ <span style="color:#FF661B;">KOREA University Sejong Campus</span> All Rights Reserved</p>
+  </footer>
 </body>
 
 </html>
