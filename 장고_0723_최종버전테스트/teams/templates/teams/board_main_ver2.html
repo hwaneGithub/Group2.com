@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>KUMATCH_board1</title>
+    <link rel="stylesheet" href="{% static 'css/basic_layout_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/image_slide_index_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slider_1.css' %}">
+    <link rel="stylesheet" href="{% static 'KU_B/font.css' %}">
+    <link rel="stylesheet" href="{% static 'KU_L/font.css' %}">
+    <link rel="stylesheet" href="{% static 'KU_M/font.css' %}">
+    <style media="screen">
+
+      #board_img_1{
+        width : 40px;
+        margin : 10px;
+      }
+      #board_img_2{
+        width : 40px;
+        margin : 10px;
+      }
+      #board_img_3{
+        width : 40px;
+        margin : 10px;
+      }
+      #board_grid{
+        display : grid;
+        grid-template-columns : 1fr 3fr;
+        margin-left : 50px;
+        margin-top : 50px;
+      }
+
+      #board_name1{
+        width : 500px;
+        margin-left : 30px;
+      }
+      #board_menu{
+        border-style : solid;
+        border-width : 1px;
+        border-color : black;
+        margin-top : 30px;
+        width : 300px;
+      }
+      #line1{
+        border-top-style : solid;
+        border-color : #8B2331;
+        margin-bottom : 15px;
+        width : 1070px;
+      }
+
+      h2{font-size : 35px}
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper_1">
+      <header>
+        <div id="grid_index">
+        <a href="{% url 'user:main' %}"><img id="home_button" src="/static/img/CollogeSymbol.jpg" href="{% url 'user:main' %}"></a>
+        <div class="titletext"><h1><a href="{% url 'user:main' %}" style="text-decoration: none;color: #8B2331;">KUMATCH</a></h1></div>
+        {% if user.is_authenticated %}
+        <div><br><br><br><br>
+        <span>{{ user.nname }}님 환영합니다.</span><br/>
+        <a href="{% url 'user:logout' %}">로그아웃</a></div>
+        {% else %}
+
+        <div id="login_choice">
+        <a href="{% url 'user:login' %}">로그인</a>
+        <span id=login_or>또는</span><a href="{% url 'user:signup' %}">회원가입</a>
+        </div>
+
+        {% endif %}
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img id="menu_button" src="/static/img/personal_settings.png"></span>
+        </div>
+      </header>
+
+      <nav>
+        <a href="{% url 'user:notice' %}">공지사항</a>
+        <a href="{% url 'user:intro' %}" class="is-current">KUMATCH 소개</a>
+        <a href="{% url 'teams:teamAll' %}">커뮤니티</a>
+        <div class="nav-underline"></div>
+      </nav>
+      <hr id=grid_line>
+
+      <div id="board_grid">
+      <div class="board_main">
+          <div id="board_menu">
+            <span><img id=board_img_1 src="/static/img/board_1.png"> <a href="{% url 'teams:teamAll' %}" style="font-size : 15px; position:relative; top:-20px; text-decoration : none; color : black;">팀 소개 게시판</a></span><br>
+            <span><img id=board_img_2 src="/static/img/board_2.png"> <a href="{% url 'teams:recruitAll' %}" style="font-size : 15px; position:relative; top:-20px; text-decoration : none; color : black;">인원 모집 게시판</a></span><br>
+            <span><img id=board_img_3 src="/static/img/board_3.png"> <a href="board_3.html" style="font-size : 15px; position:relative; top:-20px; text-decoration : none; color : black;">사진 게시판</a></span><br>
+        </div>
+      </div>
+
+      <div id="board_name1">
+       <h2 style="  font-family: KorUL; color :#8B2331;">팀 소개 게시판</h2><br>
+       <div id=write_button> <a href="{% url 'teams:reg' %}" ><button class="btn btn-primary" type="button" >신규 팀 등록</button></a> </div>
+       <div id=line1> </div>
+          <table border="1" width="800" align="center" cellspacing="0" >
+            <thead>
+            <tr>
+              <th width="150" align="center" bgcolor="#FFF0F0"> 팀 명 </th>
+              <th width="400" align="center" bgcolor="#FFF0F0"> 학과 / 동아리 </th>
+              <th width="200" align="center" bgcolor="#FFF0F0"> 대표자 </th>
+              <th width="200" align="center" bgcolor="#FFF0F0"> 인원수 </th>
+            </tr>
+          </thead>
+          <tbody align = "center">
+        {% if team_list %}
+        {% for t in team_list %}
+          <tr onclick="location.href='{% url 'teams:teamDet' t.id %}'">  <!-- 테이블 행 click 시 url 이동 -->
+            <td>{{ t.t_name }}</td>
+            <td>{{ t.t_major }}</td>
+            <td>{{ t.t_captain }}</td>
+            <td>{{ t.t_memCount }}</td>
+          </tr>
+        {% endfor %}
+        {% else %}
+			<tr></tr><td>Team: 0</td>
+		{% endif %}
+        </tbody>
+
+        </table>
+      </div>
+      </div>
+
+      <aside>
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
+          <div id="match_condition"><a href="{% url 'match:my_matlst' %}"><img id="football_img" src="/static/img/football.png">  나의 경기 현황</a></div><br><br>
+          <div id="modify_my_info"><a href="#"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
+          <div id="manage_team"><a href="{% url 'players:playerAll' %}"><img id="team_img" src="/static/img/team.png">  팀 관리</a></div><br><br>
+          <div id="sns"><a href="https://www.instagram.com/" target="_blank"><img id="instagram_img" src="/static/img/instagram.png"></a>
+                        <a href="https://www.facebook.com/" target="_blank"><img id="facebook_img" src="/static/img/facebook.png"></a></div>
+          <div id="logo" style="text-align:center; font-family:KorUB; font-size:40px; color:#8B2331;">KUMATCH</a>
+        </div>
+
+        <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        </script>
+       </div>
+      </aside>
+      <!--<img id=main_img src="img/practice.jpg">-->
+  </div>
+
+
+  <div class= "container">
+    <p class = "title">page1</p>
+    <p class = "text">text</p>
+  </div>
+
+
+    <footer>
+      <br><br>
+      <span>[30019] 세종특별자치시 세종로 2511 고려대학교 세종캠퍼스</span>
+			<span> T. 044-860-1114</span>
+			<span> F. 044-860-1048</span>
+				<p style="color:#C7B9AB;">Copyright ⓒ <span style="color:#FF661B;">KOREA University Sejong Campus</span> All Rights Reserved</p>
+    </footer>
+  </body>
+</html>

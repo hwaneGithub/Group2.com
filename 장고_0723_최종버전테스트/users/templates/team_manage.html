@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>team_management</title>
+  <link rel="stylesheet" href="css/basic_layout_style.css">
+  <link rel="stylesheet" href="css/login_style.css">
+  <link rel="stylesheet" href="KU_B/font.css">
+  <link rel="stylesheet" href="KU_L/font.css">
+  <link rel="stylesheet" href="KU_M/font.css">
+
+  <style media="screen">
+
+    #team_space{
+      margin : 30px;
+      paddin : 5px;
+    }
+    #team_button{
+      position : relative;
+      left : 310px;
+      padding : 5px;
+      width : 120px;
+      height : 40px;
+      color : blue;
+    }
+
+    #underline1{
+      border-bottom: 2px solid #C7B9AB;
+      margin-bottom : 20px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <div class="wrapper_1">
+    <header>
+      <div id="grid_index">
+        <a href="basic_layout.html"><img id="home_button" src="img/CollogeSymbol.jpg" href="#"></a>
+        <div class="titletext"><h1><a href="basic_layout.html" style="text-decoration: none;color: #8B2331;">KUMATCH</a></h1></div>
+        <div id="login_choice">
+            <a href="login_ver1.html" style="text-decoration: none;">로그인</a>
+            <span id=login_or>또는</span>
+            <a href="sign_up.html" style="text-decoration: none;">회원가입</a>
+        </div>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img id="menu_button" src="img/personal_settings.png"></span>
+      </div>
+    </header>
+
+  <nav id="grid_login">
+    <img id="aside_img_login" src="img/team_manage.jpg">
+    <div class="login_box">
+
+
+      <div id="team_space"><input id="team_button" type="button" name="team_but1" font-family ="KorUB" value="팀 만들기"> </div>
+      <table width ="300">
+        <tr align ="center">
+          <td width="100" style="font-size:25px; font-family : KorHB; padding : 15px;">나의 팀</td>
+          <td width="200">{{ team.name }}</td>
+        </tr>
+      </table>
+
+      <div id="underline1"></div>
+
+      <table border="1" width="650" align="center" cellspacing="0" >
+        <thead>
+        <tr>
+          <th width="50" align="center" bgcolor="#FFF0F0"> 번 호 </th>
+          <th width="800" align="center" bgcolor="#FFF0F0"> 학과 or 동아리 </th>
+          <th width="300" align="center" bgcolor="#FFF0F0"> 이름 </th>
+          <th width="50" align="center" bgcolor="#FFF0F0"> 성별 </th>
+        </tr>
+      </thead>
+      <tbody align = "center">
+        <!--{% for article in articles %}-->
+          <tr>
+            <td>{{ team.pk }}</td>
+            <td>{{ team.club }}</td>
+            <td>{{ team.name }}</td>
+            <td>{{ team.gender }}</td>
+          </tr>
+          <!--{% endfor %}-->
+        </tbody>
+
+    </table>
+
+      </div>
+  </nav>
+
+  <aside>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
+      <div id="match_condition"><a href="my_matchlist.html"><img id="football_img" src="img/football.png">  나의 경기 현황</a></div><br><br>
+      <div id="modify_my_info"><a href="#"><img id="settings_img" src="img/settings.png">  정보 수정</a></div><br><br>
+      <div id="manage_team"><a href="team_manage.html"><img id="team_img" src="img/team.png">  팀 관리</a></div><br><br>
+      <div id="sns"><a href="https://www.instagram.com/" target="_blank"><img id="instagram_img" src="img/instagram.png"></a>
+                    <a href="https://www.facebook.com/" target="_blank"><img id="facebook_img" src="img/facebook.png"></a></div>
+      <div id="logo" style="text-align:center; font-family:KorUB; font-size:40px; color:#8B2331;">KUMATCH</a>
+    </div>
+
+    <script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+    </script>
+    </div>
+  </aside>
+</div>
+
+
+
+  <footer>
+    <br><br>
+    <span>[30019] 세종특별자치시 세종로 2511 고려대학교 세종캠퍼스</span>
+    <span> T. 044-860-1114</span>
+    <span> F. 044-860-1048</span>
+      <p style="color:#C7B9AB;">Copyright ⓒ <span style="color:#FF661B;">KOREA University Sejong Campus</span> All Rights Reserved</p>
+  </footer>
+
+
+<!--
+  <div class="login_box">
+    <!--login 화면
+    {% if user.is_authenticated %}
+    로그인 성공!
+    {{ user.username }}님 환영합니다.
+
+    <a href="{% url 'user:logout' %}">로그아웃</a>
+    {% else %}-->
+<!--  <div class="exp1">
+      <h2>축구하고 싶을 땐</h2>
+      <h2 class=login_title_text>KUMATCH</h2>
+    </div>
+    <div class="login_inbox">
+      <div class="login_idpw">
+        <label>ID 또는 이메일</label><br>
+        <form action="" method="POST">
+          <!--{% csrf_token %}-->
+  <!--        <input type="text" name="username" value="" size = "30px"><br><br>
+          PW : <br>
+          <input type="password" name="password" value="" size = "30px">
+      </div>
+        <input id="login_but" type="submit" name="login_button" value="로그인">
+        </form>
+      <!--{% endif %}-->
+  <!--   </div>
+
+     <div class="pw_forget" >
+      <span style="text-align=center;"><a href="#">비밀번호가 생각나지 않으세요?</a><br></span>
+      <span style="text-align=center;"><a href="sign_up.html">아이디가 없다면 여기에서 가입하세요</a></span>
+     </div>
+  </div>-->
+
+</body>
+
+</html>
