@@ -3,8 +3,10 @@ from django.urls import reverse
 from django.shortcuts import render
 from players.models import Player
 
+
 def regPlayer(request) :
 	return render(request, 'players/registerPlayer.html')
+
 
 def regConPlayer(request) :
 	club = request.POST['club']
@@ -17,20 +19,24 @@ def regConPlayer(request) :
 
 	return HttpResponseRedirect(reverse('players:playerAll'))
 
+
 def reaPlayerAll(request) :
 	qs = Player.objects.all()	#선수 정보 가져오기
 	context = {'player_list': qs}
 	return render(request, 'players/team_manage.html', context)
+
 
 def detPlayer(request, name) :
 	qs = Player.objects.get(p_name = name)
 	context = {'player_info': qs}
 	return render(request, 'players/detailPlayer.html', context)
 
+
 def reaPlayerOne(request, name) :
 	qs = Player.objects.get(p_name = name)
 	context = {'player_info': qs}
 	return render(request, 'players/modifyPlayer.html', context)
+
 
 def modConPlayer(request) :
 	pid = request.POST['pid']
@@ -55,6 +61,7 @@ def modConPlayer(request) :
 
 	# templates로 이동
 	return HttpResponseRedirect(reverse('players:playerAll'))
+
 
 def delConPlayer(request, id) :
 	qs = Player.objects.get(id = id)

@@ -45,6 +45,27 @@
 [data-index="6"] {
     background-color: #fafac5;
 }
+[data-index="7"] {
+    background-color: #f9fff5;
+}
+
+[data-index="8"] {
+    background-color: aliceblue;
+}
+
+[data-index="9"] {
+    background-color: #ffe2bf;
+}
+
+[data-index="10"] {
+    background-color: #c2ffd2;
+}
+[data-index="11"] {
+    background-color: #fae3f9;
+}
+[data-index="12"] {
+    background-color: #fafac5;
+}
 
 #next-btn,
 #prev-btn {

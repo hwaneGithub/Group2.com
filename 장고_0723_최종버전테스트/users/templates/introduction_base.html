@@ -85,7 +85,7 @@
               {% if user.is_authenticated %}
               <a href="{% url 'user:main' %}"><input type="button" name="go_sign" id="go_sign" value="지금바로 시작하기"></a>
               {% else %}
-              <a href="{% url 'user:login' %}"><input type="button" name="go_sign" id="go_sign" value="지금바로 시작하기"></a>
+              <a href="{% url 'user:signup' %}"><input type="button" name="go_sign" id="go_sign" value="지금바로 시작하기"></a>
               {% endif %}
             </td>
           </tr>

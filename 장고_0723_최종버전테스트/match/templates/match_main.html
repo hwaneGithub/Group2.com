@@ -105,7 +105,7 @@
             <div class="slides">
               <article class="slide" data-index="1">
                   <h2 style="position : relative; left : 49%;">07/24&nbsp;&nbsp;금요일</h2>
-                  <a href="{% url 'match:match_main' '0724' %}" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
               </article>
               <article class="slide" data-index="2">
                   <h2 style="position : relative; left : 49%; color : red;">07/25&nbsp;&nbsp;토요일</h2>
@@ -157,10 +157,38 @@
             <span><a href="{% url 'match:my_matlst' %}"><input type="button" id="match_register" name="match_register" value="매치 등록하기"></a></span>
         </section>
         <script src="/static/js/slide_1.js"></script></div>
-      <div id="underline1"></div>
+      <form action="{% url 'players:regCon' %}" method="post">
+      <table border="1" width="800" align="center" cellspacing="0" >
+        <thead>
+        <tr>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 날 짜 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 시 간 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 장 소 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 대 표 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 팀 정 보 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 인 원 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 상 태 </th>
+        </tr>
+      </thead>
+      <tbody align = "center">
+      {% for m in match_list %}
+          <tr>
+            <td>{{ m.m_date }}</td>
+            <td>{{ m.m_time }}</td>
+            <td>{{ m.m_place }}</td>
+            <td>{{ m.m_nname }}</td>
+            <td>{{ m.m_gender }}</td>
+            <td>{{ m.m_num }}</td>
+            <td>if문 써서 버튼넣기</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+		</form>
 
 
       </div>
+
 
     <footer>
       <br><br>
@@ -171,4 +199,3 @@
     </footer>
   </body>
 </html>
-
