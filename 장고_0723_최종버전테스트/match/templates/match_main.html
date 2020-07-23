@@ -105,51 +105,51 @@
             <div class="slides">
               <article class="slide" data-index="1">
                   <h2 style="position : relative; left : 49%;">07/24&nbsp;&nbsp;금요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+                  <a href="{% url 'match:match_main' '0724' %}" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
               </article>
               <article class="slide" data-index="2">
                   <h2 style="position : relative; left : 49%; color : red;">07/25&nbsp;&nbsp;토요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+                  <a href="{% url 'match:match_main' '0725' %}" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
               </article>
               <article class="slide" data-index="3">
                   <h2 style="position : relative; left : 49%; color : red;">07/26&nbsp;&nbsp;일요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+                  <a href="{% url 'match:match_main' '0726' %}" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
               </article>
               <article class="slide" data-index="4">
                   <h2 style="position : relative; left : 49%;">07/27&nbsp;&nbsp;월요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+                  <a href="{% url 'match:match_main' '0727' %}" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
               </article>
               <article class="slide" data-index="5">
                   <h2 style="position : relative; left : 49%;">07/28&nbsp;&nbsp;화요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+                  <a href="{% url 'match:match_main' '0728' %}" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
               </article>
               <article class="slide" data-index="6">
                   <h2 style="position : relative; left : 49%;">07/29&nbsp;&nbsp;수요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+                  <a href="{% url 'match:match_main' '0729' %}" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
               </article>
               <article class="slide" data-index="7">
                   <h2 style="position : relative; left : 49%;">07/30&nbsp;&nbsp;목요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+                  <a href="{% url 'match:match_main' '0730' %}" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
               </article>
               <article class="slide" data-index="8">
                   <h2 style="position : relative; left : 49%;">07/31&nbsp;&nbsp;금요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+                  <a href="{% url 'match:match_main' '0731' %}" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
               </article>
               <article class="slide" data-index="9">
                   <h2 style="position : relative; left : 49%; color : red;">08/01&nbsp;&nbsp;토요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+                  <a href="{% url 'match:match_main' '0801' %}" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
               </article>
               <article class="slide" data-index="10">
                   <h2 style="position : relative; left : 49%; color : red;">08/02&nbsp;&nbsp;일요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+                  <a href="{% url 'match:match_main' '0802' %}" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
               </article>
               <article class="slide" data-index="11">
                   <h2 style="position : relative; left : 49%;">08/03&nbsp;&nbsp;월요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+                  <a href="{% url 'match:match_main' '0803' %}" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
               </article>
               <article class="slide" data-index="12">
                   <h2 style="position : relative; left : 49%;">08/04&nbsp;&nbsp;화요일</h2>
-                  <a href="#" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
+                  <a href="{% url 'match:match_main' '0804' %}" style="color : black; position : relative; left : 50%; text-decoration:none;">세부경기 확인하기</a>
               </article>
             </div>
             <button id="prev-btn">prev</button>
@@ -179,7 +179,19 @@
             <td>{{ m.m_nname }}</td>
             <td>{{ m.m_gender }}</td>
             <td>{{ m.m_num }}</td>
-            <td>if문 써서 버튼넣기</td>
+            <td>
+                {% if m.m_nname == user.nname %}
+                <a>내가 만든거임</a>
+                {% elif m.m_rival %}
+                    {% if m.m_rival == user.nname %}
+                    <a href="{% url 'match:delRival' user.nname m.pk %}"><input type="button" value="취소"></a>
+                    {% else %}
+                    <a href="#"><input type="button" value="**마감임박!!**"></a>
+                    {% endif %}
+                {% else %}
+                <a href="{% url 'match:matching' user.nname m.pk %}"><input type="button" value="신청가능"></a>
+                {% endif %}
+            </td>
           </tr>
           {% endfor %}
           </tbody>
@@ -189,7 +201,7 @@
 
       </div>
 
-
+    <br><br><br><br><br><br><br><br><br><br>
     <footer>
       <br><br>
       <span>[30019] 세종특별자치시 세종로 2511 고려대학교 세종캠퍼스</span>
