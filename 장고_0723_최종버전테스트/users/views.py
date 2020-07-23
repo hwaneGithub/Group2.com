@@ -105,22 +105,22 @@ def info_view(request, id):
 @csrf_exempt
 def modinfo_view(request):
     nname = request.POST['nname']
-    namechange_pw = request.POST['change_pw']
+    namechange_pw = request.POST['password']
     con_chpw = request.POST['con_chpw']
     change_mobile = request.POST['change_mobile']
     re_position = request.POST['re_position']
 
     u_qs = User.objects.get(nname=nname)  # Query String
 
-    u_qs.password = namechange_pw
+    u_qs.set_password(namechange_pw)
     u_qs.passwordck = con_chpw
     u_qs.email = change_mobile
     u_qs.favorite = re_position
 
-    t_qs.save()
+    u_qs.save()
 
     # templates로 이동
-    return HttpResponseRedirect(reverse('user:main'))
+    return render(request, 'basic_layout.html')
 
 
 '''

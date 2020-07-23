@@ -1,5 +1,5 @@
 function checkValidate2() {
-    if (!checkChangePw(modify.change_pw.value, modify.con_chpw.value)) {
+    if (!checkChangePw(modify.password.value, modify.con_chpw.value)) {
         return false;
     } else if (!checkChangeMobile(modify.change_mobile.value)) {
         return false;
@@ -31,22 +31,22 @@ function checkUserId(username) { //아이디 칸 입력 여부 확인하기
     return true; //확인이 완료되었을 때
 }
 
-function checkChangePw(change_pw, con_chpw) { //비밀번호 및 비밀번호 확인 칸 입력 여부 확인하기
-    if (!checkExistData(change_pw, "'변경 비밀번호'를"))
+function checkChangePw(password, con_chpw) { //비밀번호 및 비밀번호 확인 칸 입력 여부 확인하기
+    if (!checkExistData(password, "'변경 비밀번호'를"))
         return false;
     if (!checkExistData(con_chpw, "'변경 비밀번호 확인'을"))
         return false;
 
     var chpwRegExp = /^[a-zA-z0-9]{4,12}$/; //비밀번호 유효성 검사 정규식
-    if (!chpwRegExp.test(change_pw)) {
+    if (!chpwRegExp.test(password)) {
         alert("비밀번호는 영문 대소문자와 숫자를 이용하여 4~12자리로 입력해야합니다!");
-        sign.change_pw.value = "";
-        sign.change_pw.focus();
+        sign.password.value = "";
+        sign.password.focus();
         return false;
     }
-    if (change_pw != con_chpw) { // 비밀번호와 비밀번호 일치 여부 확인하기
+    if (password != con_chpw) { // 비밀번호와 비밀번호 일치 여부 확인하기
         alert("비밀번호가 일치하지 않습니다.");
-        sign.change_pw.value = "";
+        sign.password.value = "";
         sign.con_chpw.value = "";
         sign.con_chpw.focus();
         return false;

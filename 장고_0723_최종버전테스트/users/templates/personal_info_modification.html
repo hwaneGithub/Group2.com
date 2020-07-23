@@ -76,7 +76,7 @@
             <span style="font-weight:light;color:#555559;">축구하고 싶을 땐!</span><br>
             <span style="font-family:KorUB;font-weight:bold;color:#8B2331;">KUMATCH</span>
           </div>
-          <form name="modify" id="modify" onsubmit="return checkValidate2()" action="#" method="post">
+          <form name="modify" id="modify" onsubmit="return checkValidate2()" action="/modinfo" method="post">
             {% csrf_token %}
           <table width="450" align="center">
             <input type="hidden" value="{{ user.nname }}" name="nname">
@@ -91,7 +91,7 @@
             <tr>
               <td>
                   <label>비밀번호 변경</label><br>
-                  <input type="password" id="change_pw" name="change_pw">
+                  <input type="password" id="password" name="password">
               </td>
               <td>
                   <label>변경 비밀번호 확인</label><br>
