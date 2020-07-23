@@ -21,3 +21,13 @@ class Recruit(models.Model):
 
     def __str__(self):
         return self.r_title
+
+
+class Comment(models.Model):
+    c_comment = models.CharField(max_length=255)
+    c_date = models.DateTimeField('작성일', auto_now_add=True)
+    c_writer = models.CharField(max_length=20, blank=True)
+    c_recid = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.c_comment

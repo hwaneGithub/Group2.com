@@ -116,13 +116,27 @@
 	</tr>
     <tr>
 		<th>작성일</th>
-		<td>{{recruit_info.r_date}}</td>
+		<td>{{recruit_info.r_date | date:"Y-m-d H:i" }}</td>
 	</tr>
       </table>
+    {% if comment_info %}
+        {% for c in comment_info %}
+            {% if c.c_recid == recruit_info.pk %}
+      <span style="display:inline-block; width:600px; background-color:#CCCC">{{ c.c_comment }}</span>
+      <span style="display:inline-block; width:200px;">{{c.c_date | date:"Y-m-d H:i" }}</span>
+      <span style="display:inline-block; width:200px;">작성자:{{c.c_writer}}</span><br/>
+            {% endif %}
+        {% endfor %}
+        {% endif %}</br>
+        <form action="#" method="post" >
+              {% csrf_token %}<input type="hidden" name="recid" value="{{ recruit_info.pk }}">
+        <input type="text" name="comment"><input type="text"name="writer" value="{{ user.nname }}" readonly><input type="submit" value="댓글저장">
+
       {% if recruit_info.r_writer == user.nname %}
         <a href="{% url 'teams:recruitMod' recruit_info.pk %}"><button class="btn btn-primary" type="button"> 수 정 </button></a>
         <a href="{% url 'teams:recruitDel' recruit_info.pk %}"><button class="btn btn-primary" type="button"> 삭 제 </button></a>
       {% endif %}
+        </form>
 
 
   </div>

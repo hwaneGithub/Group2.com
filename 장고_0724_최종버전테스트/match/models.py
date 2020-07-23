@@ -8,7 +8,7 @@ class Match(models.Model):
     m_place = models.CharField(max_length=60)
     m_nname = models.CharField(max_length=30)
     m_gender = models.CharField(max_length=10)
-    m_num = models.CharField(max_length=5)
+    m_num = models.IntegerField(default=0)
     m_rival = models.CharField(max_length=30, blank=True)
 
 

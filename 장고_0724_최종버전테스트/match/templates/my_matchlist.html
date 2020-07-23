@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>나의 경기 현황</title>
+  <link rel="stylesheet" href="/static/css/basic_layout_style.css">
+  <link rel="stylesheet" href="/static/css/login_style.css">
+  <link rel="stylesheet" href="/static/KU_B/font.css">
+  <link rel="stylesheet" href="/static/KU_L/font.css">
+  <link rel="stylesheet" href="/static/KU_M/font.css">
+
+  <style media="screen">
+
+    #team_space{
+      margin : 30px;
+      paddin : 5px;
+    }
+    #team_button{
+      position : relative;
+      left : 310px;
+      padding : 5px;
+      width : 120px;
+      height : 40px;
+      color : blue;
+    }
+
+    #underline1{
+      border-bottom: 2px solid #C7B9AB;
+      margin-bottom : 20px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+    <div class="wrapper_1">
+      <header>
+        <div id="grid_index">
+        <a href="{% url 'user:main' %}"><img id="home_button" src="/static/img/CollogeSymbol.jpg" href="{% url 'user:main' %}"></a>
+        <div class="titletext"><h1><a href="{% url 'user:main' %}" style="text-decoration: none;color: #8B2331;">KUMATCH</a></h1></div>
+        {% if user.is_authenticated %}
+        <div><br><br><br><br>
+        <span>{{ user.nname }}님 환영합니다.</span><br/>
+        <a href="{% url 'user:logout' %}">로그아웃</a></div>
+        {% else %}
+
+        <div id="login_choice">
+        <a href="{% url 'user:login' %}">로그인</a>
+        <span id=login_or>또는</span><a href="{% url 'user:signup' %}">회원가입</a>
+        </div>
+
+        {% endif %}
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img id="menu_button" src="/static/img/personal_settings.png"></span>
+        </div>
+      </header>
+
+      <nav>
+        <a href="{% url 'user:notice' %}">공지사항</a>
+        <a href="{% url 'user:intro' %}" class="is-current">KUMATCH 소개</a>
+        <a href="{% url 'teams:teamAll' %}">커뮤니티</a>
+        <div class="nav-underline"></div>
+      </nav>
+
+      <aside>
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
+          <div id="match_condition"><a href="{% url 'match:my_matlst' %}"><img id="football_img" src="/static/img/football.png">  나의 경기 현황</a></div><br><br>
+                  {% if user.is_authenticated %} <!-- 로그인 되어있으면 정보수정 창으로-->
+          <div id="modify_my_info"><a href="{% url 'user:info' user.pk %}"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
+                  {% else %}
+          <div id="modify_my_info"><a href="{% url 'user:login' %}"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
+                  {% endif %}
+          <div id="manage_team"><a href="{% url 'players:playerAll' %}"><img id="team_img" src="/static/img/team.png">  팀 관리</a></div><br><br>
+          <div id="sns"><a href="https://www.instagram.com/" target="_blank"><img id="instagram_img" src="/static/img/instagram.png"></a>
+                        <a href="https://www.facebook.com/" target="_blank"><img id="facebook_img" src="/static/img/facebook.png"></a></div>
+          <div id="logo" style="text-align:center; font-family:KorUB; font-size:40px; color:#8B2331;">KUMATCH</a>
+        </div>
+
+        <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        </script>
+       </div>
+      </aside>
+
+
+    <div class="login_box">
+
+
+
+      <table width ="1000">
+        <tr align ="center">
+          <td width="1500" style="font-size:25px; font-family : KorHB; padding : 15px;">내가 등록한 경기</td>
+          <td><span><a href="{% url 'match:reg_match' %}"><input type="button" id="match_register" name="match_register" value="매치 등록하기"></a></span></td>
+        </tr>
+      </table>
+
+      <div id="underline1"></div>
+
+      <table border="1" width="800" align="center" cellspacing="0" >
+        <thead>
+        <tr>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 날 짜 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 시 간 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 장 소 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 대 표 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 팀 정 보 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 인 원 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 상 태 </th>
+        </tr>
+      </thead>
+      <tbody align = "center">
+      {% for m in match_list %}
+      {% if m.m_nname == user.nname %}
+          <tr>
+            <td>{{ m.m_date }}</td>
+            <td>{{ m.m_time }}</td>
+            <td>{{ m.m_place }}</td>
+            <td>{{ m.m_nname }}</td>
+            <td>{{ m.m_gender }}</td>
+            <td>{{ m.m_num }}</td>
+            <td>
+                <a href="{% url 'match:delMatch' m.pk %}"><input type="button" value="매치 취소"></a>
+            </td>
+          </tr>
+      {% endif %}
+      {% endfor %}
+      </tbody>
+      </table>
+
+    <table width ="900" style="margin-top : 200px;">
+      <tr align ="center">
+        <td width="1500" style="font-size:25px; font-family : KorHB; padding : 15px;">내가 신청한 경기</td>
+      </tr>
+    </table>
+
+    <div id="underline1"></div>
+
+    <table border="1" width="800" align="center" cellspacing="0" >
+      <thead>
+      <tr>
+        <th width="200" align="center" bgcolor="#FFF0F0"> 날 짜 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 시 간 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 장 소 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 대 표 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 팀 정 보 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 인 원 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 상 태 </th>
+      </tr>
+    </thead>
+    <tbody align = "center">
+      {% for m in match_list %}
+      {% if m.m_rival == user.nname %}
+          <tr>
+            <td>{{ m.m_date }}</td>
+            <td>{{ m.m_time }}</td>
+            <td>{{ m.m_place }}</td>
+            <td>{{ m.m_nname }}</td>
+            <td>{{ m.m_gender }}</td>
+            <td>{{ m.m_num }}</td>
+            <td>
+                <a href="{% url 'match:delRival' user.nname m.pk %}"><input type="button" value="신청 취소"></a>
+            </td>
+          </tr>
+      {% endif %}
+      {% endfor %}
+      </tbody>
+
+  </table>
+
+      </div>
+
+
+
+</div>
+
+
+
+  <footer style="margin-top : 100px">
+    <br><br>
+    <span>[30019] 세종특별자치시 세종로 2511 고려대학교 세종캠퍼스</span>
+    <span> T. 044-860-1114</span>
+    <span> F. 044-860-1048</span>
+      <p style="color:#C7B9AB;">Copyright ⓒ <span style="color:#FF661B;">KOREA University Sejong Campus</span> All Rights Reserved</p>
+  </footer>
+
+
+
+</body>
+
+</html>

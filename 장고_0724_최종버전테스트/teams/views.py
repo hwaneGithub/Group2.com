@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render
-from teams.models import Team
+from teams.models import Team, Comment
 from teams.models import Recruit
 from django.contrib.auth.decorators import login_required
 
@@ -95,9 +95,33 @@ def recruitCon(request):
 
 
 def recruitDet(request, id):
-    qs = Recruit.objects.get(id=id)
-    context = {'recruit_info': qs}
-    return render(request, 'teams/board2_detail.html', context)
+    if request.method == 'POST':
+
+        comment = request.POST['comment']
+        writer = request.POST['writer']
+        recid = request.POST['recid']
+        qs = Recruit.objects.get(id=id)
+
+        save = Comment(c_comment=comment, c_writer=writer, c_recid=recid)
+        save.save()
+
+        sq = Comment.objects.all()
+        context = {
+            'recruit_info': qs,
+            'comment_info': sq,
+        }
+
+        return render(request, 'teams/board2_detail.html', context)
+    elif request.method == 'GET':
+        qs = Recruit.objects.get(id=id)
+        sq = Comment.objects.all()
+
+        context = {
+            'recruit_info': qs,
+            'comment_info': sq,
+        }
+
+        return render(request, 'teams/board2_detail.html', context)
 
 
 def recruitOne(request, id):

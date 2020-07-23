@@ -11,4 +11,5 @@ urlpatterns = [
     path('<int:pk>/delMatch/', views.delMatch, name='delMatch'),
 
     path("reg_match",views.reg_match, name='reg_match'),
+    path("create_match", views.create_match, name='create_match'),
 ]

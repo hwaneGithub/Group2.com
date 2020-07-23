@@ -1,40 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>매치 등록하기</title>
+    <link rel="stylesheet" href="/static/css/basic_layout_style.css">
+    <link rel="stylesheet" href="/static/css/image_slide_index_style.css">
+    <link rel="stylesheet" href="/static/css/login_style.css">
+    <link rel="stylesheet" href="/static/KU_B/font.css">
+    <link rel="stylesheet" href="/static/KU_L/font.css">
+    <link rel="stylesheet" href="/static/KU_M/font.css">
 
-<head>
-  <meta charset="utf-8">
-  <title>나의 경기 현황</title>
-  <link rel="stylesheet" href="/static/css/basic_layout_style.css">
-  <link rel="stylesheet" href="/static/css/login_style.css">
-  <link rel="stylesheet" href="/static/KU_B/font.css">
-  <link rel="stylesheet" href="/static/KU_L/font.css">
-  <link rel="stylesheet" href="/static/KU_M/font.css">
+    <style media="screen">
+      #center_line{
+        border-left: 2px solid #C7B9AB;
+        margin-top: 70px;
+        margin-left : -50px;
+      }
+      #aside_img_login {
+        margin-top: 100px;
+        padding-bottom: 100px;
+      }
 
-  <style media="screen">
 
-    #team_space{
-      margin : 30px;
-      paddin : 5px;
-    }
-    #team_button{
-      position : relative;
-      left : 310px;
-      padding : 5px;
-      width : 120px;
-      height : 40px;
-      color : blue;
-    }
+    </style>
+  </head>
 
-    #underline1{
-      border-bottom: 2px solid #C7B9AB;
-      margin-bottom : 20px;
-    }
-
-  </style>
-
-</head>
-
-<body>
+  <body>
     <div class="wrapper_1">
       <header>
         <div id="grid_index">
@@ -90,100 +82,69 @@
        </div>
       </aside>
 
-
-    <div class="login_box">
-
-
-
-      <table width ="1000">
-        <tr align ="center">
-          <td width="1500" style="font-size:25px; font-family : KorHB; padding : 15px;">내가 등록한 경기</td>
-          <td><span><a href="{% url 'match:my_matlst' %}"><input type="button" id="match_register" name="match_register" value="매치 등록하기"></a></span></td>
-        </tr>
-      </table>
-
-      <div id="underline1"></div>
-
-      <table border="1" width="800" align="center" cellspacing="0" >
-        <thead>
-        <tr>
-          <th width="200" align="center" bgcolor="#FFF0F0"> 날 짜 </th>
-          <th width="100" align="center" bgcolor="#FFF0F0"> 시 간 </th>
-          <th width="200" align="center" bgcolor="#FFF0F0"> 장 소 </th>
-          <th width="200" align="center" bgcolor="#FFF0F0"> 대 표 </th>
-          <th width="100" align="center" bgcolor="#FFF0F0"> 팀 정 보 </th>
-          <th width="100" align="center" bgcolor="#FFF0F0"> 인 원 </th>
-          <th width="200" align="center" bgcolor="#FFF0F0"> 상 태 </th>
-        </tr>
-      </thead>
-      <tbody align = "center">
-      {% for m in match_list %}
-      {% if m.m_nname == user.nname %}
-          <tr>
-            <td>{{ m.m_date }}</td>
-            <td>{{ m.m_time }}</td>
-            <td>{{ m.m_place }}</td>
-            <td>{{ m.m_nname }}</td>
-            <td>{{ m.m_gender }}</td>
-            <td>{{ m.m_num }}</td>
-            <td>
-                <a href="{% url 'match:delMatch' m.pk %}"><input type="button" value="매치 취소"></a>
-            </td>
-          </tr>
-      {% endif %}
-      {% endfor %}
-      </tbody>
-      </table>
-
-    <table width ="900" style="margin-top : 200px;">
-      <tr align ="center">
-        <td width="1500" style="font-size:25px; font-family : KorHB; padding : 15px;">내가 신청한 경기</td>
-      </tr>
-    </table>
-
-    <div id="underline1"></div>
-
-    <table border="1" width="800" align="center" cellspacing="0" >
+      <nav id="grid_login">
+        <img id="aside_img_login" src="/static/img/match_register.jpg">
+        <div id="center_line">
+          <div id="notification_main">
+           <h2 style="  font-family: KorUL; color :#8B2331; margin-top : 50px; margin-left:50px; font-size : 40px;">매치 등록</h2><br>
+           <div id=line1> </div>
+              <form action="{% url 'match:create_match' %}" method="post" class="form-horizontal">
+                {% csrf_token %}
+              <table border="1" width="700" align="center" cellspacing="0" >
       <thead>
-      <tr>
-        <th width="200" align="center" bgcolor="#FFF0F0"> 날 짜 </th>
+      <tr height="70">
+        <th width="100" align="center" bgcolor="#FFF0F0"> 날 짜 </th>
           <th width="100" align="center" bgcolor="#FFF0F0"> 시 간 </th>
           <th width="200" align="center" bgcolor="#FFF0F0"> 장 소 </th>
-          <th width="200" align="center" bgcolor="#FFF0F0"> 대 표 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 대 표 </th>
           <th width="100" align="center" bgcolor="#FFF0F0"> 팀 정 보 </th>
-          <th width="100" align="center" bgcolor="#FFF0F0"> 인 원 </th>
-          <th width="200" align="center" bgcolor="#FFF0F0"> 상 태 </th>
+          <th width="50" align="center" bgcolor="#FFF0F0"> 인 원 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 등 록 </th>
       </tr>
     </thead>
     <tbody align = "center">
-      {% for m in match_list %}
-      {% if m.m_rival == user.nname %}
           <tr>
-            <td>{{ m.m_date }}</td>
-            <td>{{ m.m_time }}</td>
-            <td>{{ m.m_place }}</td>
-            <td>{{ m.m_nname }}</td>
-            <td>{{ m.m_gender }}</td>
-            <td>{{ m.m_num }}</td>
+            <td><input type="text" name="m_date" maxlength="4" style="width:75px;"></td>
             <td>
-                <a href="{% url 'match:delRival' user.nname m.pk %}"><input type="button" value="신청 취소"></a>
+              <select id="match_time" name="time">
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                  </select>
             </td>
+            <td><input type="text" name="place" size="30"></td>
+            <td><input type="text" name="nname" value="{{ user.nname }}" size="10" readonly></td>
+            <td>
+            <select name="gender">
+              <option value="남성팀">남성팀</option>
+              <option value="여성팀">여성팀</option>
+              <option value="혼성팀">혼성팀</option>
+            </select>
+            </td>
+            <td><input type="number" name="num" style="width:80px;"></td>
+            <td><button class="btn btn-primary" type="submit" name="Register">등 록</button></td>
           </tr>
-      {% endif %}
-      {% endfor %}
       </tbody>
-
   </table>
+  </form>
+          </div>
+        </div>
+    </nav>
+  </div>
 
-      </div>
-
-
-
-</div>
-
-
-
-  <footer style="margin-top : 100px">
+  <footer style="font-size:16px;">
     <br><br>
     <span>[30019] 세종특별자치시 세종로 2511 고려대학교 세종캠퍼스</span>
     <span> T. 044-860-1114</span>
@@ -191,8 +152,5 @@
       <p style="color:#C7B9AB;">Copyright ⓒ <span style="color:#FF661B;">KOREA University Sejong Campus</span> All Rights Reserved</p>
   </footer>
 
-
-
-</body>
-
+  </body>
 </html>
