@@ -104,27 +104,36 @@
 
       <div id="underline1"></div>
 
-      <table border="1" width="850" align="center" cellspacing="0" >
+      <table border="1" width="800" align="center" cellspacing="0" >
         <thead>
         <tr>
-          <th width="150" align="center" bgcolor="#FFF0F0"> 매치일정 </th>
-          <th width="800" align="center" bgcolor="#FFF0F0"> 장소 </th>
-          <th width="300" align="center" bgcolor="#FFF0F0"> 팀이름 </th>
-          <th width="150" align="center" bgcolor="#FFF0F0"> 비고 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 날 짜 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 시 간 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 장 소 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 대 표 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 팀 정 보 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 인 원 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 상 태 </th>
         </tr>
       </thead>
       <tbody align = "center">
-        <!--{% for article in articles %}-->
+      {% for m in match_list %}
+      {% if m.m_nname == user.nname %}
           <tr>
-            <td>{{ mymatch.date }}</td>
-            <td>{{ mymatch.place }}</td>
-            <td>{{ mymatch.teamname }}</td>
-            <td>{{ mymatch.note }}</td>
+            <td>{{ m.m_date }}</td>
+            <td>{{ m.m_time }}</td>
+            <td>{{ m.m_place }}</td>
+            <td>{{ m.m_nname }}</td>
+            <td>{{ m.m_gender }}</td>
+            <td>{{ m.m_num }}</td>
+            <td>
+                <a href="{% url 'match:delMatch' m.pk %}"><input type="button" value="매치 취소"></a>
+            </td>
           </tr>
-          <!--{% endfor %}-->
-        </tbody>
-
-    </table>
+      {% endif %}
+      {% endfor %}
+      </tbody>
+      </table>
 
     <table width ="900" style="margin-top : 200px;">
       <tr align ="center">
@@ -134,24 +143,34 @@
 
     <div id="underline1"></div>
 
-    <table border="1" width="850" align="center" cellspacing="0" >
+    <table border="1" width="800" align="center" cellspacing="0" >
       <thead>
       <tr>
-        <th width="150" align="center" bgcolor="#FFF0F0"> 매치일정 </th>
-        <th width="800" align="center" bgcolor="#FFF0F0"> 장소 </th>
-        <th width="300" align="center" bgcolor="#FFF0F0"> 팀이름 </th>
-        <th width="150" align="center" bgcolor="#FFF0F0"> 비고 </th>
+        <th width="200" align="center" bgcolor="#FFF0F0"> 날 짜 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 시 간 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 장 소 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 대 표 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 팀 정 보 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 인 원 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 상 태 </th>
       </tr>
     </thead>
     <tbody align = "center">
-      <!--{% for article in articles %}-->
-        <tr>
-          <td>{{ match.date }}</td>
-          <td>{{ match.place }}</td>
-          <td>{{ match.teamname }}</td>
-          <td>{{ match.note }}</td>
-        </tr>
-        <!--{% endfor %}-->
+      {% for m in match_list %}
+      {% if m.m_rival == user.nname %}
+          <tr>
+            <td>{{ m.m_date }}</td>
+            <td>{{ m.m_time }}</td>
+            <td>{{ m.m_place }}</td>
+            <td>{{ m.m_nname }}</td>
+            <td>{{ m.m_gender }}</td>
+            <td>{{ m.m_num }}</td>
+            <td>
+                <a href="{% url 'match:delRival' user.nname m.pk %}"><input type="button" value="신청 취소"></a>
+            </td>
+          </tr>
+      {% endif %}
+      {% endfor %}
       </tbody>
 
   </table>

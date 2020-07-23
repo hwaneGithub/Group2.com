@@ -8,4 +8,7 @@ urlpatterns = [
     path('<str:date>/match_main/', views.match_main, name='match_main'),
     path('<str:nname>/<int:pk>/matching/', views.matching, name='matching'),
     path('<str:nname>/<int:pk>/delRival/', views.delRival, name='delRival'),
+    path('<int:pk>/delMatch/', views.delMatch, name='delMatch'),
+
+    path("reg_match",views.reg_match, name='reg_match'),
 ]

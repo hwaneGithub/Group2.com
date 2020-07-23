@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from match.models import Match
 
 
@@ -8,9 +10,11 @@ from match.models import Match
 
 @login_required(login_url='user:login')
 def my_matlst(request):
-    return render(request, 'my_matchlist.html')
+    qs = Match.objects.all()
+    context = {'match_list': qs}
+    return render(request, 'my_matchlist.html', context)
 
-
+@login_required(login_url='user:login')
 def match_main(request, date):
     qs = Match.objects.filter(m_date=date)
     context = {'match_list': qs}
@@ -29,3 +33,15 @@ def delRival(request, nname, pk):
     qs.m_rival = ''
     qs.save()
     return render(request, 'match_main.html')
+
+
+def delMatch(request, pk):
+    qs = Match.objects.get(pk=pk)
+    qs.delete()
+    return render(request, 'match_main.html')
+
+
+def reg_match(request):
+    return render(request, 'match_register.html')
+
+
