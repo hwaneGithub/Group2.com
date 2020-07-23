@@ -1,28 +1,16 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <title>KUMATCH</title>
-    <link rel="stylesheet" href="{% static 'css/basic_layout_style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/image_slide_index_style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/slider_1.css' %}">
-    <link rel="stylesheet" href="{% static 'KU_B/font.css' %}">
-    <link rel="stylesheet" href="{% static 'KU_L/font.css' %}">
-    <link rel="stylesheet" href="{% static 'KU_M/font.css' %}">
-    <style media="screen">
-      #introduction{
-        position: relative;
-      }
-
-      body {margin:0
-overflow-y:auto;
-overflow-h:hidden;
-
-}
-    </style>
+    <title>KUMATCH 소개</title>
+    <link rel="stylesheet" href="/static/KU_B/font.css">
+    <link rel="stylesheet" href="/static/KU_L/font.css">
+    <link rel="stylesheet" href="/static/KU_M/font.css">
+    <link rel="stylesheet" href="/static/KU_L/font.css">
+    <link rel="stylesheet" href="/static/css/basic_layout_style.css">
+    <link rel="stylesheet" href="/static/css/slider_1.css">
+    <link rel="stylesheet" href="/static/css/introduction_style.css">
   </head>
 
   <body>
@@ -59,7 +47,7 @@ overflow-h:hidden;
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
           <div id="match_condition"><a href="{% url 'match:my_matlst' %}"><img id="football_img" src="/static/img/football.png">  나의 경기 현황</a></div><br><br>
           <div id="modify_my_info"><a href="#"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
-          <div id="manage_team"><a href="{% url 'user:manage' %}"><img id="team_img" src="/static/img/team.png">  팀 관리</a></div><br><br>
+          <div id="manage_team"><a href="{% url 'players:playerAll' %}"><img id="team_img" src="/static/img/team.png">  팀 관리</a></div><br><br>
           <div id="sns"><a href="https://www.instagram.com/" target="_blank"><img id="instagram_img" src="/static/img/instagram.png"></a>
                         <a href="https://www.facebook.com/" target="_blank"><img id="facebook_img" src="/static/img/facebook.png"></a></div>
           <div id="logo" style="text-align:center; font-family:KorUB; font-size:40px; color:#8B2331;">KUMATCH</a>
@@ -76,8 +64,68 @@ overflow-h:hidden;
         </script>
        </div>
       </aside>
-      <!--<img id=main_img src="img/practice.jpg">-->
-    <iframe id="introduction" src="/static/introduction_page.html" width="100%" height="2500px" scrolling="no" frameborder="0"></iframe>
+
+      <article>
+        <table>
+          <tr>
+            <td colspan="2">
+              <img id="introduction_main_image" src="/static/img/stadium_intro.jpg" alt="소개 이미지">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div id="when">축구&풋살하고 싶을 땐!</div>
+              <br>
+              <div id="answer">KUMATCH</div>
+              <br>
+              {% if user.is_authenticated %}
+              <a href="{% url 'user:main' %}"><input type="button" name="go_sign" id="go_sign" value="지금바로 시작하기"></a>
+              {% else %}
+              <a href="{% url 'user:login' %}"><input type="button" name="go_sign" id="go_sign" value="지금바로 시작하기"></a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div id="play">Let's Play!!</div>
+            </td>
+          </tr>
+          <tr>
+            <td width="50%">
+              <img id="img1" src="/static/img/introduction_2.jpg" alt="소개 이미지2">
+            </td>
+            <td>
+              <div id="text1">내가 하고 싶을 때!</div>
+              <br>
+              <div id="text2">아침부터 저녁, 평일부터 주말까지</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div id="text3">내가 하고 싶은 곳에서!!</div>
+              <br>
+              <div id="text4">집, 학교 등 나와 가까운 구장에서!</div>
+            </td>
+            <td>
+              <img id="img2" src="/static/img/introduction_3.jpg" alt="소개 이미지3">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img id="img3" src="/static/img/introduction_4.jpg" alt="소개 이미지4">
+            </td>
+            <td>
+              <div id="text5">내가 하고 싶은 사람들과!!!</div>
+              <br>
+              <div id="text6">여성매치, 혼성매치, 친구들과 함께</div>
+            </td>
+          </tr>
+        </table>
+      </article>
+
+    </div>
+
+
     <footer>
       <br><br>
       <span>[30019] 세종특별자치시 세종로 2511 고려대학교 세종캠퍼스</span>

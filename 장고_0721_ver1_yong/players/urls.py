@@ -25,5 +25,5 @@ urlpatterns = [
 	path('<str:name>/det/', views.detPlayer, name='playerDet'),
 	path('<str:name>/mod/', views.reaPlayerOne, name='playerMod'),
 	path('modCon/', views.modConPlayer, name='modCon'),
-	path('<str:name>/del/', views.delConPlayer, name='playerDel'),
+	path('<int:id>/del/', views.delConPlayer, name='playerDel'),
 ]

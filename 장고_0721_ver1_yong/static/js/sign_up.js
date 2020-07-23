@@ -104,9 +104,9 @@ function checkNickname(nickname) { //아이디 칸 입력 여부 확인하기
     if (!checkExistData(nickname, "'닉네임'을"))
         return false;
 
-    var nicknameRegExp = /^[a-zA-z0-9가-힣]{4,16}$/; //아이디 유효성 검사 정규식
+    var nicknameRegExp = /^[a-zA-z0-9가-힣]{2,12}$/; //아이디 유효성 검사 정규식
     if (!nicknameRegExp.test(nickname)) {
-        alert("닉네임은 영문 대소문자와 숫자, 한글을 이용하여 4~16자리 입력해야합니다!");
+        alert("닉네임은 영문 대소문자와 숫자, 한글을 이용하여 2~12자리 입력해야합니다!");
         sign.nickname.value = "";
         sign.nickname.focus();
         return false;
@@ -137,7 +137,7 @@ function checkGender(gender) {
 }
 
 function checkPosition() { // 관심분야 1개 이상 체크여부 확인하기
-    var checkedPosition = document.getElementsByName("position");
+    var checkedPosition = document.getElementsByName("favorite");
 
     for (var i = 0; i < checkedPosition.length; i++) { //체크된 값이 하나라도 있을경우 바로 true
         if (checkedPosition[i].checked == true) {

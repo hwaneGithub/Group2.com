@@ -1,14 +1,12 @@
 from django.db import models
 
+
 # Create your models here.
 class Player(models.Model):
-	p_pid = models.CharField(max_length=30)
-	p_nick = models.CharField(max_length=50)
-	p_email = models.CharField(max_length=30)
-	p_name = models.CharField(max_length=30)
-	p_birth =  models.CharField(max_length=10)
-	p_position = models.CharField(max_length=30)
-	p_team = models.CharField(max_length=30)
+    p_club = models.CharField(max_length=30)
+    p_name = models.CharField(max_length=10)
+    p_gender = models.CharField(max_length=5)
+    p_nname = models.CharField(max_length=16)
 
-	def __str__(self):
-		return self.p_name
+    def __str__(self):
+        return '[{}] {}'.format(self.p_club, self.p_name)

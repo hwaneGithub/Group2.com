@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -5,37 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>KUMATCH 회원가입</title>
-    <link rel="stylesheet" href="css/basic_layout_style.css">
-    <link rel="stylesheet" href="css/sign_up_style.css">
-    <script src="js/sign_up.js"></script>
-    <link rel="stylesheet" href="KU_B/font.css">
-    <link rel="stylesheet" href="KU_L/font.css">
-    <link rel="stylesheet" href="KU_M/font.css">
+    <link rel="stylesheet" href="{% static 'css/basic_layout_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sign_up_style.css' %}">
+    <script src="/static/js/sign_up.js"></script>
+    <link rel="stylesheet" href="{% static 'KU_B/font.css' %}">
+    <link rel="stylesheet" href="{% static 'KU_L/font.css' %}">
+    <link rel="stylesheet" href="{% static 'KU_M/font.css' %}">
   </head>
 
   <body>
     <div class="wrapper_1">
       <header>
         <div id="grid_index">
-          <a href="basic_layout.html"><img id="home_button" src="img/CollogeSymbol.jpg" href="#"></a>
-          <div class="titletext"><h1><a href="basic_layout.html" style="text-decoration: none;color: #8B2331;">KUMATCH</a></h1></div>
-          <div id="login_choice">
-              <a href="login_ver1.html" style="text-decoration: none;">로그인</a>
-              <span id=login_or>또는</span>
-              <a href="sign_up.html" style="text-decoration: none;">회원가입</a>
-          </div>
-          <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img id="menu_button" src="img/personal_settings.png"></span>
+        <a href="{% url 'user:main' %}"><img id="home_button" src="/static/img/CollogeSymbol.jpg" href="{% url 'user:main' %}"></a>
+        <div class="titletext"><h1><a href="{% url 'user:main' %}" style="text-decoration: none;color: #8B2331;">KUMATCH</a></h1></div>
+        {% if user.is_authenticated %}
+        <div><br><br><br><br>
+        <span>{{ user.nname }}님 환영합니다.</span><br/>
+        <a href="{% url 'user:logout' %}">로그아웃</a></div>
+        {% else %}
+
+        <div id="login_choice">
+        <a href="{% url 'user:login' %}">로그인</a>
+        <span id=login_or>또는</span><a href="{% url 'user:signup' %}">회원가입</a>
+        </div>
+
+        {% endif %}
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img id="menu_button" src="/static/img/personal_settings.png"></span>
         </div>
       </header>
 
       <nav id="grid_sign_up">
-        <img id="aside_img_sign_up" src="img/kick.jpg">
+        <img id="aside_img_sign_up" src="/static/img/kick.jpg">
         <div class="sign_up_box">
           <div class="sign_up_phr">
             <span style="font-weight:light;color:#555559;">축구하고 싶을 땐!</span><br>
             <span style="font-family:KorUB;font-weight:bold;color:#8B2331;">KUMATCH</span>
           </div>
-          <form name="sign" id="sign" onsubmit="return checkValidate()" action="#" method="post" enctype="text/plain">
+          <form name="sign" id="sign" onsubmit="return checkValidate()" action="#" method="post">
+            {% csrf_token %}
+            {% include "form_errors.html" %}
           <table width="450" align="center">
             <tr>
               <td colspan="2">
@@ -48,26 +58,26 @@
               </td>
               <td>
                   <label>비밀번호 확인</label><br>
-                  <input type="password" id="con_pw" name="con_pw">
+                  <input type="password" id="con_pw" name="passwordck">
               </td>
             <tr>
               <td>
                   <label>성</label><br>
-                  <input type="text" id="last_name" name="last_name">
+                  <input type="text" id="first_name" name="firstname">
               </td>
               <td>
                   <label>이름</label><br>
-                  <input type="text" id="first_name" name="first_name">
+                  <input type="text" id="last_name" name="lastname">
               </td>
             </tr>
             <tr>
               <td>
                   <label>닉네임</label><br>
-                  <input type="text" id="nickname" name="nickname">
+                  <input type="text" id="nickname" name="nname">
               </td>
               <td>
                   <label>휴대폰 번호</label><br>
-                  <input type="tel" id="mobile_num" name="mobile_num" placeholder="010-1234-5678" style="font-size:15px;">
+                  <input type="tel" id="mobile_num" name="email" placeholder="010-1234-5678" style="font-size:15px;">
               </td>
 
 
@@ -75,7 +85,7 @@
             <tr>
               <td colspan="2">
                   <label>생년월일</label><br>
-                  <select id="birth_year" name="year">
+                  <select id="birth_year" name="birth_year">
                     <option value="1930">1930</option>
                     <option value="1931">1931</option>
                     <option value="1932">1932</option>
@@ -176,7 +186,7 @@
                     <option value="2019">2019</option>
                   </select>
 
-                  <select id="birth_month" name="month">
+                  <select id="birth_month" name="birth_month">
                     <option value="Jan">1월</option>
                     <option value="Feb">2월</option>
                     <option value="Mar">3월</option>
@@ -191,7 +201,7 @@
                     <option value="Dec">12월</option>
                   </select>
 
-                  <select id="birth_date" name="date">
+                  <select id="birth_date" name="birth_day">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -236,18 +246,18 @@
               </td>
               <td>
                 <label>선호 포지션</label><br>
-                <div class="choice_position">
-                <input type="checkbox" id="position" name="position" value="GK">GK
-                <input type="checkbox" id="position" name="position" value="DF">DF
-                <input type="checkbox" id="position" name="position" value="MF">MF
-                <input type="checkbox" id="position" name="position" value="FW">FW
+                <div class="favorite">
+                <input type="checkbox" id="position" name="favorite" value="GK">GK
+                <input type="checkbox" id="position" name="favorite" value="DF">DF
+                <input type="checkbox" id="position" name="favorite" value="MF">MF
+                <input type="checkbox" id="position" name="favorite" value="FW">FW
                 </div>
               </td>
             </tr>
             <tr>
               <td colspan="2" id="check_id">
                 <label>학번</label><br>
-                <input type="text" id="id_num" name="id_num">
+                <input type="text" id="id_num" name="stu_num">
               </td>
             </tr>
             <tr>
@@ -262,33 +272,32 @@
               </td>
             </tr>
           </table>
-          <br><br><span id="if">이미 아이디가 있다면 <a href="login_ver1.html" id="go_login">여기</a>에서 로그인하세요</span>
+          <br><br><span id="if">이미 아이디가 있다면 <a href="{% url 'user:login' %}" id="go_login">여기</a>에서 로그인하세요</span>
         </form>
 
             </nav>
 
               <aside>
-                <div id="mySidenav" class="sidenav">
-                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
-                  <div id="match_condition"><a href="my_matchlist.html"><img id="football_img" src="img/football.png">  나의 경기 현황</a></div><br><br>
-                  <div id="modify_my_info"><a href="personal_info_modification.html"><img id="settings_img" src="img/settings.png">  정보 수정</a></div><br><br>
-                  <div id="manage_team"><a href="team_manage.html"><img id="team_img" src="img/team.png">  팀 관리</a></div><br><br>
-                  <div id="sns"><a href="https://www.instagram.com/" target="_blank"><img id="instagram_img" src="img/instagram.png"></a>
-                                <a href="https://www.facebook.com/" target="_blank"><img id="facebook_img" src="img/facebook.png"></a></div>
-                  <div id="logo" style="text-align:center; font-family:KorUB; font-size:40px; color:#8B2331;">KUMATCH</a>
-                </div>
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
+          <div id="match_condition"><a href="{% url 'match:my_matlst' %}"><img id="football_img" src="/static/img/football.png">  나의 경기 현황</a></div><br><br>
+          <div id="modify_my_info"><a href="#"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
+          <div id="manage_team"><a href="{% url 'players:playerAll' %}"><img id="team_img" src="/static/img/team.png">  팀 관리</a></div><br><br>
+          <div id="sns"><a href="https://www.instagram.com/" target="_blank"><img id="instagram_img" src="/static/img/instagram.png"></a>
+                        <a href="https://www.facebook.com/" target="_blank"><img id="facebook_img" src="/static/img/facebook.png"></a></div>
+          <div id="logo" style="text-align:center; font-family:KorUB; font-size:40px; color:#8B2331;">KUMATCH</a>
+        </div>
 
-                <script>
-                function openNav() {
-                    document.getElementById("mySidenav").style.width = "250px";
-                }
+        <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
 
-                function closeNav() {
-                    document.getElementById("mySidenav").style.width = "0";
-                }
-                </script>
-               </div>
-              </aside>
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        </script>
+       </div></aside>
           </div>
 
 <!--

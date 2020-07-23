@@ -7,15 +7,12 @@ def regPlayer(request) :
 	return render(request, 'players/registerPlayer.html')
 
 def regConPlayer(request) :
-	pid = request.POST['pid']
-	nick = request.POST['nick']
-	email = request.POST['email']
+	club = request.POST['club']
 	name = request.POST['name']
-	birth = request.POST['birth']
-	position = request.POST['position']
-	team = request.POST['team']
+	gender = request.POST['gender']
+	nname = request.POST['nname']
 
-	qs = Player(p_pid=pid, p_nick=nick, p_email=email, p_name=name, p_birth=birth, p_position=position, p_team=team)
+	qs = Player(p_club=club, p_name=name, p_gender=gender, p_nname=nname)
 	qs.save()
 
 	return HttpResponseRedirect(reverse('players:playerAll'))
@@ -23,7 +20,7 @@ def regConPlayer(request) :
 def reaPlayerAll(request) :
 	qs = Player.objects.all()	#선수 정보 가져오기
 	context = {'player_list': qs}
-	return render(request, 'players/readPlayer.html', context)
+	return render(request, 'players/team_manage.html', context)
 
 def detPlayer(request, name) :
 	qs = Player.objects.get(p_name = name)
@@ -59,8 +56,8 @@ def modConPlayer(request) :
 	# templates로 이동
 	return HttpResponseRedirect(reverse('players:playerAll'))
 
-def delConPlayer(request, name) :
-	qs = Player.objects.get(p_name = name)
+def delConPlayer(request, id) :
+	qs = Player.objects.get(id = id)
 	qs.delete()
 
 	return HttpResponseRedirect(reverse('players:playerAll'))
