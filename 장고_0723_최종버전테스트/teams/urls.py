@@ -19,6 +19,9 @@ from . import views # . 아무거나 들어와도 views
 app_name = 'teams' #앞에 만든 urls를 찾기 쉽게 app_name이라는 변수 생성.
 urlpatterns = [
 	# url이 teams reg로 들어왔을 때 view에 있는 regTeam함수를 실행하라는 명령
+	'''
+	팀 소개 게시판
+	'''
 	path('reg/', views.regTeam, name='reg'),
 	path('regCon/', views.regConTeam, name='regCon'),
 	path('all/', views.reaTeamAll, name='teamAll'),
@@ -26,6 +29,7 @@ urlpatterns = [
 	path('<int:id>/mod/', views.reaTeamOne, name='teamMod'),
 	path('modCon/', views.modConTeam, name='modCon'),
 	path('<int:id>/del/', views.delConTeam, name='teamDel'),
+
 	path('recruit/', views.recruitAll, name='recruitAll'),
 	#path('recruit/reg/', views.recuitNew, name='recruitNew'),
 ]
