@@ -47,7 +47,7 @@
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
           <div id="match_condition"><a href="{% url 'match:my_matlst' %}"><img id="football_img" src="/static/img/football.png">  나의 경기 현황</a></div><br><br>
                   {% if user.is_authenticated %} <!-- 로그인 되어있으면 정보수정 창으로-->
-          <div id="modify_my_info"><a href="{% url 'user:info' %}"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
+          <div id="modify_my_info"><a href="{% url 'user:info' user.pk %}"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
                   {% else %}
           <div id="modify_my_info"><a href="{% url 'user:login' %}"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
                   {% endif %}
@@ -77,7 +77,9 @@
             <span style="font-family:KorUB;font-weight:bold;color:#8B2331;">KUMATCH</span>
           </div>
           <form name="modify" id="modify" onsubmit="return checkValidate2()" action="#" method="post">
+            {% csrf_token %}
           <table width="450" align="center">
+            <input type="hidden" value="{{ user.nname }}" name="nname">
             <tr id="welcome_phr">
               <td>
                 <span id=personal_name></span>
@@ -99,7 +101,7 @@
             <tr>
               <td colspan="2">
                   <label>휴대폰 번호 변경</label><br>
-                  <input type="tel" id="change_mobile" name="change_mobile" placeholder="010-1234-5678" style="font-size:15px;">
+                  <input type="tel" id="change_mobile" name="change_mobile" placeholder="010-1234-5678" style="font-size:15px;" value={{user_info.email}}>
               </td>
             </tr>
             <tr>

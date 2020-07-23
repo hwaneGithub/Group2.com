@@ -94,9 +94,33 @@ def signup_view(request):
 '''
 정보 수정
 '''
-def info_view(request):
-    return render(request, "personal_info_modification.html")
 
+
+def info_view(request, id):
+    qs = User.objects.get(id=id)
+    context = {'user_info': qs}
+    return render(request, "personal_info_modification.html", context)
+
+
+@csrf_exempt
+def modinfo_view(request):
+    nname = request.POST['nname']
+    namechange_pw = request.POST['change_pw']
+    con_chpw = request.POST['con_chpw']
+    change_mobile = request.POST['change_mobile']
+    re_position = request.POST['re_position']
+
+    u_qs = User.objects.get(nname=nname)  # Query String
+
+    u_qs.password = namechange_pw
+    u_qs.passwordck = con_chpw
+    u_qs.email = change_mobile
+    u_qs.favorite = re_position
+
+    t_qs.save()
+
+    # templates로 이동
+    return HttpResponseRedirect(reverse('user:main'))
 
 
 '''

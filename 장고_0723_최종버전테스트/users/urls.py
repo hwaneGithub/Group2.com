@@ -12,5 +12,6 @@ urlpatterns = [
     path('<int:id>/det/', views.notDet_view, name='notDet'),
     path("manage", views.manage_view, name="manage"),
     path("intro", views.intro_view, name="intro"),
-    path("info", views.info_view, name="info"),
+    path('<int:id>/info/', views.info_view, name="info"),
+    path("modinfo", views.modinfo_view, name="modinfo"),
 ]
