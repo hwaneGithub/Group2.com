@@ -43,6 +43,7 @@ def delMatch(request, pk):
     return render(request, 'match_main.html')
 
 
+@login_required(login_url='user:login')
 def reg_match(request):
     return render(request, 'match_register.html')
 
