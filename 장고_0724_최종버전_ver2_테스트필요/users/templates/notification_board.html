@@ -79,7 +79,6 @@
               <table id="table1" border="1" width="700" align="center" cellspacing="0">
                 <thead>
                 <tr>
-                  <th width="50" align="center" bgcolor="#FFF0F0"> 번 호 </th>
                   <th width="450" align="center" bgcolor="#FFF0F0"> 제 목 </th>
                   <th width="100" align="center" bgcolor="#FFF0F0"> 작성자 </th>
                   <th width="100" align="center" bgcolor="#FFF0F0"> 작성일 </th>
@@ -88,7 +87,6 @@
               <tbody align = "center">
                 {% for n in notice_list %}
                   <tr onclick="location.href='{% url 'user:notDet' n.id %}'">  <!-- 테이블 행 click 시 url 이동 -->
-                    <td>{{ n.pk }}</td>
                     <td>{{ n.n_title }}</td>
                     <td>{{ n.n_writer }}</td>
                     <td>{{ n.n_date | date:"Y-m-d H:i" }}</td>

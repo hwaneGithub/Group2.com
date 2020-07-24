@@ -124,17 +124,21 @@
             {% if c.c_recid == recruit_info.pk %}
       <span style="display:inline-block; width:600px; background-color:#CCCC">{{ c.c_comment }}</span>
       <span style="display:inline-block; width:200px;">{{c.c_date | date:"Y-m-d H:i" }}</span>
-      <span style="display:inline-block; width:200px;">작성자:{{c.c_writer}}</span><br/>
+      <span style="display:inline-block; width:200px;">작성자:{{c.c_writer}}</span>
+            {% if c.c_writer == user.nname %}
+      <button onclick="location.href='{% url 'teams:commentDel' c.pk recruit_info.pk %}'">댓글 삭제</button>
+            {% endif %}
+      <br/>
             {% endif %}
         {% endfor %}
         {% endif %}</br>
-        <form action="#" method="post" >
+        <form action="{% url 'teams:recruitDet' recruit_info.pk %}" method="post" >
               {% csrf_token %}<input type="hidden" name="recid" value="{{ recruit_info.pk }}">
         <input type="text" name="comment"><input type="text"name="writer" value="{{ user.nname }}" readonly><input type="submit" value="댓글저장">
 
       {% if recruit_info.r_writer == user.nname %}
-        <a href="{% url 'teams:recruitMod' recruit_info.pk %}"><button class="btn btn-primary" type="button"> 수 정 </button></a>
-        <a href="{% url 'teams:recruitDel' recruit_info.pk %}"><button class="btn btn-primary" type="button"> 삭 제 </button></a>
+        <a href="{% url 'teams:recruitMod' recruit_info.pk %}"><button class="btn btn-primary" type="button">게시글 수정 </button></a>
+        <a href="{% url 'teams:recruitDel' recruit_info.pk %}"><button class="btn btn-primary" type="button">게시글 삭제 </button></a>
       {% endif %}
         </form>
 

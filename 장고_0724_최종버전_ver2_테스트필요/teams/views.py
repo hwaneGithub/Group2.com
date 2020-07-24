@@ -150,6 +150,22 @@ def modRecruit(request):
 
 def delConRecruit(request, id):
     qs = Recruit.objects.get(id=id)
+    qs_comm = Comment.objects.filter(c_recid=id)
     qs.delete()
+    qs_comm.delete()
 
     return HttpResponseRedirect(reverse('teams:recruitAll'))
+
+
+def commentDel(request, id, r_id):
+    qs = Comment.objects.get(id=id)
+    qs2 = Recruit.objects.get(id=r_id)
+    qs.delete()
+    sq = Comment.objects.all()
+    context = {
+        'recruit_info': qs2,
+        'comment_info': sq,
+    }
+
+    return render(request, 'teams/board2_detail.html', context)
+    #return HttpResponseRedirect(reverse('teams:recruitAll'))

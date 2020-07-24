@@ -38,4 +38,5 @@ urlpatterns = [
 	path('recruit/<int:id>/mod/', views.recruitOne, name='recruitMod'),
 	path('recruit/modCon/', views.modRecruit, name='recmodCon'),
 	path('recruit/<int:id>/del/', views.delConRecruit, name='recruitDel'),
+	path('comment/<int:id>/<int:r_id>/del/', views.commentDel, name='commentDel'),
 ]
