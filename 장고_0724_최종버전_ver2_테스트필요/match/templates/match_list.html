@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>match_list</title>
+  </head>
+  <body>
+
+    <table border="1" width="900" align="center" cellspacing="0">
+      <tr>
+        <th colspan="6" width="150" align="center">시간</th>
+        <th colspan="15" width="350">장소</th>
+        <th colspan="10" width="200">신청현황</th>
+        <th colspan="5" width="200">신청</th>
+      </tr>
+      <tbody align = "center">
+        <!--{% for match in matches %}-->
+          <tr>
+            <th colspan="6" width="100" align="center">{{ match.date }}</th>
+            <th colspan="15" width="350">{{ match.place }}</th>
+            <th colspan="10" width="200">{{ match.current }}</th>
+            <th colspan="5" width="200">{{ match.request }</th>
+          </tr>
+          <!--{% endfor %}-->
+        </tbody>
+      </table>
+
+
+  </body>
+</html>

@@ -1,0 +1,112 @@
+body {
+  font-family: KorUL;
+}
+
+#grid_modify {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#aside_img_sign_up {
+  width: 58%;
+  margin-top: 100px;
+  margin-left: 145px;
+  margin-bottom: 100px;
+}
+
+.modify_box {
+  margin-top: 60px;
+  font-family: KorUL;
+  border-left: 2px solid #C7B9AB;
+  margin-bottom: 45px;
+}
+
+.sign_up_phr {
+  font-size: 35px;
+  padding-top:35px;
+  padding-bottom: 20px;
+  padding-left: 100px;
+}
+
+table {
+  font-family: KorUL;
+  font-size: 16px;
+  margin-top: 35px;
+  border-bottom: 1px solid #C7B9AB;
+}
+
+td {
+  padding-top: 30px;
+}
+
+#personal_name {
+  font-size: 13px;
+}
+
+#welcome {
+  font-family: KorUB;
+  font-size: 20px;
+  color: #8B2331;
+}
+
+#change_pw {
+  width : 240px;
+  height : 40px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+
+#con_chpw {
+  width : 240px;
+  height : 40px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+
+#change_mobile {
+  width : 490px;
+  height : 40px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #555559;
+}
+
+.change_position {
+  text-align: center;
+  border: 1px solid black;
+  height: 45px;
+  border-radius: 8px;
+  vertical-align: middle;
+}
+
+#re_position {
+  width: 50px;
+  font-family: KorUL;
+  font-size: 50px;
+  vertical-align: middle;
+}
+
+#modify_complete {
+  align: center;
+  font-family: KorUM;
+  font-size: 20px;
+  color: #8B2331;
+  background-color: #C7B9AB;
+  width: 500px;
+  height: 43px;
+  border-radius: 8px;
+  border-width: 0px;
+  margin-bottom: 20px;
+}
+
+#withdrawal {
+  position: absolute;
+  right: 130px;
+  width: 150px;
+  height: 35px;
+  font-family: KorUL;
+  font-size: 18px;
+  color: #555559;
+}

@@ -1,0 +1,156 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>매치 등록하기</title>
+    <link rel="stylesheet" href="/static/css/basic_layout_style.css">
+    <link rel="stylesheet" href="/static/css/image_slide_index_style.css">
+    <link rel="stylesheet" href="/static/css/login_style.css">
+    <link rel="stylesheet" href="/static/KU_B/font.css">
+    <link rel="stylesheet" href="/static/KU_L/font.css">
+    <link rel="stylesheet" href="/static/KU_M/font.css">
+
+    <style media="screen">
+      #center_line{
+        border-left: 2px solid #C7B9AB;
+        margin-top: 70px;
+        margin-left : -50px;
+      }
+      #aside_img_login {
+        margin-top: 100px;
+        padding-bottom: 100px;
+      }
+
+
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper_1">
+      <header>
+        <div id="grid_index">
+        <a href="{% url 'user:main' %}"><img id="home_button" src="/static/img/CollogeSymbol.jpg" href="{% url 'user:main' %}"></a>
+        <div class="titletext"><h1><a href="{% url 'user:main' %}" style="text-decoration: none;color: #8B2331;">KUMATCH</a></h1></div>
+        {% if user.is_authenticated %}
+        <div><br><br><br><br>
+        <span>{{ user.nname }}님 환영합니다.</span><br/>
+        <a href="{% url 'user:logout' %}">로그아웃</a></div>
+        {% else %}
+
+        <div id="login_choice">
+        <a href="{% url 'user:login' %}">로그인</a>
+        <span id=login_or>또는</span><a href="{% url 'user:signup' %}">회원가입</a>
+        </div>
+
+        {% endif %}
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img id="menu_button" src="/static/img/personal_settings.png"></span>
+        </div>
+      </header>
+
+      <nav>
+        <a href="{% url 'user:notice' %}">공지사항</a>
+        <a href="{% url 'user:intro' %}" class="is-current">KUMATCH 소개</a>
+        <a href="{% url 'teams:teamAll' %}">커뮤니티</a>
+        <div class="nav-underline"></div>
+      </nav>
+
+      <aside>
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
+          <div id="match_condition"><a href="{% url 'match:my_matlst' %}"><img id="football_img" src="/static/img/football.png">  나의 경기 현황</a></div><br><br>
+                  {% if user.is_authenticated %} <!-- 로그인 되어있으면 정보수정 창으로-->
+          <div id="modify_my_info"><a href="{% url 'user:info' user.pk %}"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
+                  {% else %}
+          <div id="modify_my_info"><a href="{% url 'user:login' %}"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
+                  {% endif %}
+          <div id="manage_team"><a href="{% url 'players:playerAll' %}"><img id="team_img" src="/static/img/team.png">  팀 관리</a></div><br><br>
+          <div id="sns"><a href="https://www.instagram.com/" target="_blank"><img id="instagram_img" src="/static/img/instagram.png"></a>
+                        <a href="https://www.facebook.com/" target="_blank"><img id="facebook_img" src="/static/img/facebook.png"></a></div>
+          <div id="logo" style="text-align:center; font-family:KorUB; font-size:40px; color:#8B2331;">KUMATCH</a>
+        </div>
+
+        <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        </script>
+       </div>
+      </aside>
+
+      <nav id="grid_login">
+        <img id="aside_img_login" src="/static/img/match_register.jpg">
+        <div id="center_line">
+          <div id="notification_main">
+           <h2 style="  font-family: KorUL; color :#8B2331; margin-top : 50px; margin-left:50px; font-size : 40px;">매치 등록</h2><br>
+           <div id=line1> </div>
+              <form action="{% url 'match:create_match' %}" method="post" class="form-horizontal">
+                {% csrf_token %}
+              <table border="1" width="700" align="center" cellspacing="0" >
+      <thead>
+      <tr height="70">
+        <th width="100" align="center" bgcolor="#FFF0F0"> 날 짜 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 시 간 </th>
+          <th width="200" align="center" bgcolor="#FFF0F0"> 장 소 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 대 표 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 팀 정 보 </th>
+          <th width="50" align="center" bgcolor="#FFF0F0"> 인 원 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 등 록 </th>
+      </tr>
+    </thead>
+    <tbody align = "center">
+          <tr>
+            <td><input type="text" name="m_date" maxlength="4" style="width:75px;"></td>
+            <td>
+              <select id="match_time" name="time">
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                  </select>
+            </td>
+            <td><input type="text" name="place" size="30"></td>
+            <td><input type="text" name="nname" value="{{ user.nname }}" size="10" readonly></td>
+            <td>
+            <select name="gender">
+              <option value="남성팀">남성팀</option>
+              <option value="여성팀">여성팀</option>
+              <option value="혼성팀">혼성팀</option>
+            </select>
+            </td>
+            <td><input type="number" name="num" style="width:80px;"></td>
+            <td><button class="btn btn-primary" type="submit" name="Register">등 록</button></td>
+          </tr>
+      </tbody>
+  </table>
+  </form>
+          </div>
+        </div>
+    </nav>
+  </div>
+
+  <footer style="font-size:16px;">
+    <br><br>
+    <span>[30019] 세종특별자치시 세종로 2511 고려대학교 세종캠퍼스</span>
+    <span> T. 044-860-1114</span>
+    <span> F. 044-860-1048</span>
+      <p style="color:#C7B9AB;">Copyright ⓒ <span style="color:#FF661B;">KOREA University Sejong Campus</span> All Rights Reserved</p>
+  </footer>
+
+  </body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>팀 관리</title>
+  <link rel="stylesheet" href="/static/css/basic_layout_style.css">
+  <link rel="stylesheet" href="/static/css/login_style.css">
+  <link rel="stylesheet" href="/static/KU_B/font.css">
+  <link rel="stylesheet" href="/static/KU_L/font.css">
+  <link rel="stylesheet" href="/static/KU_M/font.css">
+
+  <style media="screen">
+
+    #team_space{
+      margin : 30px;
+      paddin : 5px;
+    }
+    #team_button{
+      position : relative;
+      left : 310px;
+      padding : 5px;
+      width : 120px;
+      height : 40px;
+      color : blue;
+    }
+
+    #underline1{
+      border-bottom: 2px solid #C7B9AB;
+      margin-bottom : 20px;
+    }
+    #aside_img_login{
+      padding-bottom: 100px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+    <div class="wrapper_1">
+      <header>
+        <div id="grid_index">
+        <a href="{% url 'user:main' %}"><img id="home_button" src="/static/img/CollogeSymbol.jpg" href="{% url 'user:main' %}"></a>
+        <div class="titletext"><h1><a href="{% url 'user:main' %}" style="text-decoration: none;color: #8B2331;">KUMATCH</a></h1></div>
+        {% if user.is_authenticated %}
+        <div><br><br><br><br>
+        <span>{{ user.nname }}님 환영합니다.</span><br/>
+        <a href="{% url 'user:logout' %}">로그아웃</a></div>
+        {% else %}
+
+        <div id="login_choice">
+        <a href="{% url 'user:login' %}">로그인</a>
+        <span id=login_or>또는</span><a href="{% url 'user:signup' %}">회원가입</a>
+        </div>
+
+        {% endif %}
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img id="menu_button" src="/static/img/personal_settings.png"></span>
+        </div>
+      </header>
+
+      <nav>
+        <a href="{% url 'user:notice' %}">공지사항</a>
+        <a href="{% url 'user:intro' %}" class="is-current">KUMATCH 소개</a>
+        <a href="{% url 'teams:teamAll' %}">커뮤니티</a>
+        <div class="nav-underline"></div>
+      </nav>
+
+      <aside>
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br><br><br>
+          <div id="match_condition"><a href="{% url 'match:my_matlst' %}"><img id="football_img" src="/static/img/football.png">  나의 경기 현황</a></div><br><br>
+                  {% if user.is_authenticated %} <!-- 로그인 되어있으면 정보수정 창으로-->
+          <div id="modify_my_info"><a href="{% url 'user:info' user.pk %}"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
+                  {% else %}
+          <div id="modify_my_info"><a href="{% url 'user:login' %}"><img id="settings_img" src="/static/img/settings.png">  정보 수정</a></div><br><br>
+                  {% endif %}
+          <div id="manage_team"><a href="{% url 'players:playerAll' %}"><img id="team_img" src="/static/img/team.png">  팀 관리</a></div><br><br>
+          <div id="sns"><a href="https://www.instagram.com/" target="_blank"><img id="instagram_img" src="/static/img/instagram.png"></a>
+                        <a href="https://www.facebook.com/" target="_blank"><img id="facebook_img" src="/static/img/facebook.png"></a></div>
+          <div id="logo" style="text-align:center; font-family:KorUB; font-size:40px; color:#8B2331;">KUMATCH</a>
+        </div>
+
+        <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        </script>
+       </div>
+      </aside>
+
+  <nav id="grid_login">
+    <img id="aside_img_login" src="/static/img/team_manage.jpg">
+    <div class="login_box">
+
+
+      <!--<div id="team_space"><input id="team_button" type="button" name="team_but1" font-family ="KorUB" value="팀 만들기"> </div>-->
+      <table width ="300">
+        <tr align ="center">
+          <td width="100" style="font-size:25px; font-family : KorHB; padding : 15px;">나의 팀</td>
+          <!--<td width="200">{{ team.name }}</td>-->
+        </tr>
+      </table>
+
+      <div id="underline1"></div>
+      <form action="{% url 'players:regCon' %}" method="post">
+      <table border="1" width="650" align="center" cellspacing="0" >
+        <thead>
+        <tr>
+          <th width="50" align="center" bgcolor="#FFF0F0"> 번 호 </th>
+          <th width="800" align="center" bgcolor="#FFF0F0"> 학과 or 동아리 </th>
+          <th width="300" align="center" bgcolor="#FFF0F0"> 이름 </th>
+          <th width="50" align="center" bgcolor="#FFF0F0"> 성별 </th>
+          <th width="100" align="center" bgcolor="#FFF0F0"> 관리 </th>
+        </tr>
+      </thead>
+      <tbody align = "center">
+        {% for p in player_list %}
+        {% if p.p_nname == user.nname %}
+          <tr>
+            <td>{{ p.pk }}</td>
+            <td>{{ p.p_club }}</td>
+            <td>{{ p.p_name }}</td>
+            <td>{{ p.p_gender }}</td>
+            <td><input type="button" value="삭제" onclick = "location.href = '{% url 'players:playerDel' p.pk %}' "></td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+		{% csrf_token %}
+          <tr>
+            <td><input type="hidden" value="{{ user.nname }}" name="nname">#</td>
+            <td><input type="text" name="club"></td>
+            <td><input type="text" name="name"></td>
+            <td><select name="gender">
+			<option value="남성">남성</option>
+			<option value="여성">여성</option>
+		    </select></td>
+            <td><input type="submit" name="Register" value="등록"></td>
+          </tr>
+        </table>
+		</form>
+        </tbody>
+
+
+      </div>
+  </nav>
+</div>
+
+
+
+  <footer>
+    <br><br>
+    <span>[30019] 세종특별자치시 세종로 2511 고려대학교 세종캠퍼스</span>
+    <span> T. 044-860-1114</span>
+    <span> F. 044-860-1048</span>
+      <p style="color:#C7B9AB;">Copyright ⓒ <span style="color:#FF661B;">KOREA University Sejong Campus</span> All Rights Reserved</p>
+  </footer>
+
+
+
+</body>
+
+</html>
